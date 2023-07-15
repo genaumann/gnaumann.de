@@ -1,3 +1,6 @@
+import {NodeId} from 'react-accessible-treeview/dist/TreeView/types'
+import {KBIndex} from '@/types'
+
 export const calcAge = (birthdate: Date): number => {
   const today = new Date()
   const birthYear = birthdate.getFullYear()
@@ -23,4 +26,23 @@ export const formatDate = (dateString: string) => {
   const month = (date.getMonth() + 1).toString().padStart(2, '0')
   const year = date.getFullYear()
   return `${day}.${month}.${year}`
+}
+
+interface ITreeNode {
+  id?: NodeId
+  name: string
+  children?: ITreeNode[]
+}
+
+export const convertIndexTree = (originalTree: KBIndex): ITreeNode => {
+  const {title, href, children} = originalTree
+  const newChildren = children ? children.map(convertIndexTree) : undefined
+
+  const data = {
+    name: title,
+    id: href,
+    children: newChildren
+  }
+
+  return data
 }

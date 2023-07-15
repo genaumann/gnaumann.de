@@ -18,3 +18,19 @@ export type KBIndex = {
   modifyDate: string
   children?: KBIndex[]
 }
+
+export type KBLayout = {
+  params: {
+    kb: string[]
+  }
+}
+
+export interface ChildProps {
+  children: ReactNode
+}
+
+export interface KBLayoutProps extends ChildProps, KBLayout {}
+
+export interface KBNavProps {
+  index: KBIndex[]
+}
