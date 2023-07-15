@@ -1,0 +1,21 @@
+@tailwind base;
+
+@layer base {
+  @import './theme.css';
+
+  *[id] {
+    scroll-margin-top: 81.55px;
+  }
+
+  #__next {
+    @apply flex flex-col min-h-screen;
+  }
+
+  #hero {
+    min-height: calc(100vh - 81.55px);
+  }
+
+  :focus-visible {
+    @apply outline-4 outline-offset-2 outline-primary;
+  }
+}
