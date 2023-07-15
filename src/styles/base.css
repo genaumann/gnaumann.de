@@ -7,7 +7,7 @@
     scroll-margin-top: 81.55px;
   }
 
-  #__next {
+  body {
     @apply flex flex-col min-h-screen;
   }
 
