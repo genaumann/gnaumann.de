@@ -3,6 +3,19 @@ import {KBLayoutProps} from '@/types'
 import KBIndex from '@/KBIndex.json'
 import KBNav from '@/components/layout/kb/KBNav'
 import KBNavSearch from '@/components/layout/kb/KBNavSearch'
+import {Metadata} from 'next'
+import {findArticleByHref} from '@/utils'
+
+export const generateMetadata = async ({
+  params
+}: KBLayoutProps): Promise<Metadata> => {
+  const article = findArticleByHref(KBIndex, `/kb/${params.kb.join('/')}`)
+  return {
+    title: `GNaumann · KB · ${article ? article.title : 'Unknown'}`,
+    description: article ? article.description : 'GNaumann KB Artikel',
+    authors: [{name: 'Gino Naumann', url: 'https://gnaumann.de'}]
+  }
+}
 
 const KBLayout = ({children}: KBLayoutProps) => {
   return (

@@ -8,8 +8,8 @@ import Footer from '@/components/layout/foot/Footer'
 const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
-  title: 'GNaumann',
-  description: 'Gino Naumann Webseite'
+  title: 'GNaumann · Home',
+  description: 'Gino Naumann - Linux Administrator 🐧'
 }
 
 const RootLayout = ({children}: {children: React.ReactNode}) => {
