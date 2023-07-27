@@ -27,7 +27,7 @@ const CodeWindow = ({children, className}: JSX.IntrinsicElements['div']) => {
   )
 }
 
-CodeWindow.Code = ({children, maxLines}: CodeWindowCodeProps) => {
+const Code = ({children, maxLines}: CodeWindowCodeProps) => {
   const [lineNum, setLineNum] = useState<Array<number>>([1])
   const ref = useRef(null)
   const dimension = useResizeObserver(ref)
@@ -37,6 +37,7 @@ CodeWindow.Code = ({children, maxLines}: CodeWindowCodeProps) => {
         setLineNum(lineNum => [...lineNum, lineNum[lineNum.length - 1] + 1])
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dimension?.height])
 
   return (
@@ -49,12 +50,15 @@ CodeWindow.Code = ({children, maxLines}: CodeWindowCodeProps) => {
             {lineNum.join('\n')}
           </div>
           <code className="flex-auto block text-slate-50 pt-4 pb-4 px-4 overflow-auto">
-            <div ref={ref} children={children} />
+            <div ref={ref}>{children}</div>
           </code>
         </pre>
       </div>
     </div>
   )
 }
+
+Code.displayName = 'Code'
+CodeWindow.Code = Code
 
 export default CodeWindow

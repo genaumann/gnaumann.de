@@ -53,6 +53,7 @@ const KBNav = ({index}: KBNavProps) => {
 
   useEffect(() => {
     setExpandIds([...setExpandedIds(pathname, dataTree), ...expandIds])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   return (

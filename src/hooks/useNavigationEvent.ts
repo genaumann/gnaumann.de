@@ -10,5 +10,5 @@ export const useNavigationEvent = (onPathnameChange: () => void) => {
 
   useEffect(() => {
     onPathnameChange()
-  }, [pathname, searchParams])
+  }, [pathname, searchParams, onPathnameChange])
 }

@@ -14,7 +14,8 @@ const useResizeObserver = (ref: RefObject<HTMLElement>): Dimensions | null => {
       return
     }
 
-    if (!ref.current) {
+    const currentRef = ref.current
+    if (!currentRef) {
       return
     }
 
@@ -26,11 +27,11 @@ const useResizeObserver = (ref: RefObject<HTMLElement>): Dimensions | null => {
     }
 
     const observer = new ResizeObserver(handleResize)
-    observer.observe(ref.current)
+    observer.observe(currentRef)
 
     return () => {
-      if (ref.current) {
-        observer.unobserve(ref.current!)
+      if (currentRef) {
+        observer.unobserve(currentRef)
       }
     }
   }, [ref])
