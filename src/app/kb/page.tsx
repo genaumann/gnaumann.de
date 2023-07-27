@@ -17,7 +17,7 @@ const KBIndex = () => {
             geschrieben. Verbesserungen können gern per GitHub übermittelt
             werden.
           </p>
-          <SearchButton className="py-4 text-xl mt-3" />
+          <SearchButton location="body" className="py-4 text-xl mt-3" />
         </div>
         <div className="md:mt-3">
           <KBIndexTree />

@@ -1,4 +1,3 @@
-// useNavigationEvent.tsx
 'use client'
 
 import {usePathname, useSearchParams} from 'next/navigation'
@@ -10,5 +9,6 @@ export const useNavigationEvent = (onPathnameChange: () => void) => {
 
   useEffect(() => {
     onPathnameChange()
-  }, [pathname, searchParams, onPathnameChange])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname, searchParams])
 }

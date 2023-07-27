@@ -1,3 +1,5 @@
+'use client'
+
 import {Dialog} from '@headlessui/react'
 import {useState} from 'react'
 import {NavEntries, SocialIcons} from './Items'
