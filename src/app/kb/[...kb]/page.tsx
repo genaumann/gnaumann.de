@@ -1,14 +1,19 @@
-'use client'
+import {getPostBySlug} from '@/utils/mdx'
+import {notFound} from 'next/navigation'
 
-import {KBLayout} from '@/types'
-import dynamic from 'next/dynamic'
+interface KBArticleProps {
+  params: {
+    kb: string[]
+  }
+}
 
-const KBArticle = ({params}: KBLayout) => {
-  const Article = dynamic(
-    () => import(`@/articles/${params.kb.join('/')}.mdx`),
-    {ssr: false}
-  )
-  return <Article />
+const KBArticle = async ({params}: KBArticleProps) => {
+  try {
+    const {content} = await getPostBySlug(params)
+    return <article className="prose">{content}</article>
+  } catch (error) {
+    notFound()
+  }
 }
 
 export default KBArticle
