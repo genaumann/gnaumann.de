@@ -4,19 +4,9 @@ import imageDark from '@pub/gnaumann_white_cut.png'
 import imageLight from '@pub/gnaumann_col_cut.png'
 import {NavEntries, SocialIcons} from './Items'
 import SearchButton from '@/components/SearchButton'
-import dynamic from 'next/dynamic'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faBars} from '@fortawesome/pro-duotone-svg-icons'
-
-const Loader = () => {
-  return <FontAwesomeIcon className="text-2xl text-gray-600" icon={faBars} />
-}
+import HeaderDialog from './Dialog'
 
 const Header = () => {
-  const HeaderDialog = dynamic(() => import('./Dialog'), {
-    ssr: false,
-    loading: () => <Loader />
-  })
   return (
     <header className="border-b border-secondary/60 sticky top-0 backdrop-blur z-10">
       <nav className="mx-4 md:mx-7 lg:mx-10 py-2 flex items-center">
