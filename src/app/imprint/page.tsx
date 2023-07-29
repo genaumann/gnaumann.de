@@ -1,13 +1,8 @@
-'use client'
-
-import MDX from './imprint.mdx'
+import {getMDXByPath} from '@/utils/mdx'
 
 const Imprint = () => {
-  return (
-    <main className="prose">
-      <MDX />
-    </main>
-  )
+  const imprint = getMDXByPath('app/imprint/imprint.mdx')
+  return <main className="prose">{imprint}</main>
 }
 
 export default Imprint

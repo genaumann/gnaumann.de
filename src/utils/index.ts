@@ -54,9 +54,7 @@ export const findArticleByHref = (
   if (Array.isArray(href)) {
     href = href.join('/')
   }
-  console.log(href)
   for (const node of tree) {
-    console.log(node)
     if (node.href === href) {
       return node
     }

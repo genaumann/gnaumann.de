@@ -1,3 +1,5 @@
+'use client'
+
 import {NavItemsT} from '@/types'
 import {faChevronDown} from '@fortawesome/pro-regular-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
