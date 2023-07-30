@@ -1,4 +1,9 @@
-import {getPostBySlug} from '@/utils/mdx'
+import Admonition, {
+  Title as AdmonitionTitle,
+  Content as AdmonitionContent
+} from '@/components/modules/kb/articles/Admonition'
+import {getPostBySlug, mdxOptions} from '@/utils/mdx'
+import {MDXRemote} from 'next-mdx-remote/rsc'
 import {notFound} from 'next/navigation'
 
 interface KBArticleProps {
@@ -7,10 +12,25 @@ interface KBArticleProps {
   }
 }
 
+const components = {
+  Admonition,
+  AdmonitionTitle,
+  AdmonitionContent
+}
+
 const KBArticle = async ({params}: KBArticleProps) => {
   try {
-    const {content} = await getPostBySlug(params)
-    return <article className="prose">{content}</article>
+    const {fileContent} = await getPostBySlug(params)
+    return (
+      <article className="prose">
+        <MDXRemote
+          source={fileContent}
+          // @ts-ignore
+          components={{...components}}
+          options={{mdxOptions}}
+        />
+      </article>
+    )
   } catch (error) {
     notFound()
   }
