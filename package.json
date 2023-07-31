@@ -54,6 +54,7 @@
     "@types/uuid": "^9.0.2",
     "hast-util-to-string": "^2.0.0",
     "lowlight": "^2.9.0",
+    "remark-emoji": "^3.1.2",
     "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1"
   }
