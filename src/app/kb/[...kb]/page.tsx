@@ -3,6 +3,7 @@ import Admonition, {
   Content as AdmonitionContent
 } from '@/components/modules/kb/articles/Admonition'
 import CodeBlockPlain from '@/components/modules/kb/articles/CodeBlockPlain'
+import Icon from '@/components/modules/kb/articles/Icons'
 import {Tab} from '@/components/modules/kb/articles/Tabs'
 import {getPostBySlug, mdxOptions} from '@/utils/mdx'
 import {MDXRemote} from 'next-mdx-remote/rsc'
@@ -35,7 +36,8 @@ const components = {
   ),
   Tab,
   CodeBlockFile,
-  CodeBlockPlain
+  CodeBlockPlain,
+  Icon
 }
 
 const KBArticle = async ({params}: KBArticleProps) => {
