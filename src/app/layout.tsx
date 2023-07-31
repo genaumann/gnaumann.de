@@ -5,6 +5,7 @@ import {Inter} from 'next/font/google'
 import {config} from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Footer from '@/components/layout/foot/Footer'
+import ReduxProvider from '@/redux/Provider'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -19,9 +20,11 @@ const RootLayout = ({children}: {children: React.ReactNode}) => {
     <html lang="de" className="bg-body">
       <body
         className={`${inter.className} antialiased text-black from-body bg-gradient-to-b to-gray-100`}>
-        <Header />
-        <div className="mb-4 mx-4 md:mx-7 lg:mx-10">{children}</div>
-        <Footer />
+        <ReduxProvider>
+          <Header />
+          <div className="mb-4 mx-4 md:mx-7 lg:mx-10">{children}</div>
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   )

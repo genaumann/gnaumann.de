@@ -13,7 +13,6 @@ const withMDX = nextMDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
-  reactStrictMode: true,
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx']
 }
 
