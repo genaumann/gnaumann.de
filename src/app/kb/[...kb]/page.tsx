@@ -2,6 +2,7 @@ import Admonition, {
   Title as AdmonitionTitle,
   Content as AdmonitionContent
 } from '@/components/modules/kb/articles/Admonition'
+import CodeBlockPlain from '@/components/modules/kb/articles/CodeBlockPlain'
 import {Tab} from '@/components/modules/kb/articles/Tabs'
 import {getPostBySlug, mdxOptions} from '@/utils/mdx'
 import {MDXRemote} from 'next-mdx-remote/rsc'
@@ -18,6 +19,10 @@ interface KBArticleProps {
 const Tabs = dynamic(() => import('@/components/modules/kb/articles/Tabs'), {
   ssr: false
 })
+const CodeBlockFile = dynamic(
+  () => import('@/components/modules/kb/articles/CodeBlockFile'),
+  {ssr: false}
+)
 
 const components = {
   Admonition,
@@ -28,7 +33,9 @@ const components = {
       <Tabs {...props}>{props.children}</Tabs>
     </Suspense>
   ),
-  Tab
+  Tab,
+  CodeBlockFile,
+  CodeBlockPlain
 }
 
 const KBArticle = async ({params}: KBArticleProps) => {
