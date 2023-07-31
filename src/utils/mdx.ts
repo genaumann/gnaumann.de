@@ -4,6 +4,10 @@ import {compileMDX} from 'next-mdx-remote/rsc'
 import type {CompileOptions} from '@mdx-js/mdx'
 import frontmatter from 'remark-frontmatter'
 import remarkgfm from 'remark-gfm'
+import {remarkCodeblock} from '@/remark/codeblock'
+import rehhypeHighlightCode from '@/rehype/highlightCode'
+import emoji from 'remark-emoji'
+import headingId from 'remark-custom-heading-id'
 
 const rootDirectory = path.join(process.cwd(), 'src')
 
@@ -12,8 +16,8 @@ interface getPostBySlugProps {
 }
 
 export const mdxOptions: CompileOptions = {
-  remarkPlugins: [frontmatter, remarkgfm],
-  rehypePlugins: []
+  remarkPlugins: [frontmatter, remarkgfm, remarkCodeblock, emoji, headingId],
+  rehypePlugins: [rehhypeHighlightCode]
 }
 
 export const getPostBySlug = async ({kb}: getPostBySlugProps) => {
