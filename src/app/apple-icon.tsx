@@ -14,6 +14,7 @@ const Icon = () => {
     (
       <div tw="flex bg-slate-900 w-full h-full relative text-white justify-center">
         <div tw="flex items-center">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`${basePath}/gnaumann_col_cut.png`}
             alt="Logo"

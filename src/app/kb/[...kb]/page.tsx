@@ -44,11 +44,11 @@ const components = {
   Icon
 }
 
-export const generateMetadata = async (
+export const generateMetadata = (
   {params}: KBArticleProps,
   parent?: ResolvingMetadata
-): Promise<Metadata> => {
-  const prevMeta = (await parent) as Metadata
+): Metadata => {
+  const prevMeta = parent as Metadata
   const article = findArticleByHref(KBIndex, `/kb/${params.kb.join('/')}`)
 
   const title = `GNaumann · KB · ${article ? article.title : 'Unknown'}`

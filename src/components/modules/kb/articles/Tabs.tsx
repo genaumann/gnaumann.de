@@ -53,6 +53,7 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
 
   useEffect(() => {
     setCurrentTab(parseInt(searchParams.get(`t${id}`) || activeTab.toString()))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id])
 
   return (

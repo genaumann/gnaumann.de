@@ -50,6 +50,7 @@ export const GET = async (
               )}
             </div>
             <div tw="flex border border-sky-500 h-full" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${request.nextUrl.origin}/gnaumann_col_cut.png`}
               alt="Logo"
