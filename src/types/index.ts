@@ -26,6 +26,12 @@ export type KBLayout = {
   }
 }
 
+export type RequestContext<N extends string, T = unknown> = {
+  params: {
+    [K in N]: T
+  }
+}
+
 export interface ChildProps {
   children: ReactNode
 }
