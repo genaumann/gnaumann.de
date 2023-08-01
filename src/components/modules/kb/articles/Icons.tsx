@@ -28,9 +28,7 @@ import {
 import {IconBaseProps} from 'react-icons'
 
 type FaIconProps = Omit<FontAwesomeIconProps, 'icon'>
-type MergedProps = FaIconProps & IconBaseProps
-
-export interface IconProps extends MergedProps {
+export interface IconProps extends IconBaseProps {
   name: string
 }
 

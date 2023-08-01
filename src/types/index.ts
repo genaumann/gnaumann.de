@@ -16,12 +16,19 @@ export type KBIndex = {
   sort?: number
   createDate: string
   modifyDate: string
+  icons?: string[]
   children?: KBIndex[]
 }
 
 export type KBLayout = {
   params: {
     kb: string[]
+  }
+}
+
+export type RequestContext<N extends string, T = unknown> = {
+  params: {
+    [K in N]: T
   }
 }
 

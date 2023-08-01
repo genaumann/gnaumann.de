@@ -1,21 +1,8 @@
 import KBMobileNav from '@/components/layout/kb/KBMobileNav'
 import {KBLayoutProps} from '@/types'
-import KBIndex from '@/KBIndex.json'
 import KBNav from '@/components/layout/kb/KBNav'
-import {Metadata} from 'next'
-import {findArticleByHref} from '@/utils'
 import SearchButton from '@/components/SearchButton'
-
-export const generateMetadata = async ({
-  params
-}: KBLayoutProps): Promise<Metadata> => {
-  const article = findArticleByHref(KBIndex, `/kb/${params.kb.join('/')}`)
-  return {
-    title: `GNaumann · KB · ${article ? article.title : 'Unknown'}`,
-    description: article ? article.description : 'GNaumann KB Artikel',
-    authors: [{name: 'Gino Naumann', url: 'https://gnaumann.de'}]
-  }
-}
+import KBIndex from '@/KBIndex.json'
 
 const KBLayout = ({children}: KBLayoutProps) => {
   return (
