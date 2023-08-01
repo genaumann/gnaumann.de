@@ -16,6 +16,7 @@ export type KBIndex = {
   sort?: number
   createDate: string
   modifyDate: string
+  icons?: string[]
   children?: KBIndex[]
 }
 

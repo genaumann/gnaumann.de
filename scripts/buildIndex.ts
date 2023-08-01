@@ -8,6 +8,7 @@ interface MdxMetadata {
   [key: string]: any
   description: string
   sort?: number
+  icons?: string[]
 }
 
 interface Sortable {
@@ -90,6 +91,7 @@ const buildTreeObject = (filePath: string, run: number) => {
     head: children.length > 0 ? true : false,
     createDate: createDate.toString().replace('\n', '') || fallbackDate,
     modifyDate: modifyDate.toString().replace('\n', '') || fallbackDate,
+    icons: metaData.icons || undefined,
     children: undefined
   }
 
