@@ -51,6 +51,7 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.4",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/glob": "^8.1.0",
     "@types/uuid": "^9.0.2",
     "hast-util-to-string": "^2.0.0",
     "lowlight": "^2.9.0",
