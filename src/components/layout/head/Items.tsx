@@ -42,7 +42,11 @@ export const NavEntries = ({...props}: JSX.IntrinsicElements['li']) => {
             {item.entries && (
               <HeadDropDown button={item.title} entries={item.entries} />
             )}
-            {item.href && <Link href={item.href}>{item.title}</Link>}
+            {item.href && (
+              <Link className="hover:text-primary" href={item.href}>
+                {item.title}
+              </Link>
+            )}
           </li>
         )
       })}
