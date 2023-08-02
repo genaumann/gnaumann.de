@@ -63,7 +63,6 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
           Select a tab
         </label>
         <select
-          id="tabs"
           name="tabs"
           onChange={e => {
             setCurrentTab(e.target.selectedIndex)
@@ -86,7 +85,7 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
       </div>
       <div className="hidden sm:block mt-3">
         <div className="border-b border-secondary/60">
-          <nav className="-mb-px flex space-x-4" aria-label="Tabs">
+          <nav className="-mb-px flex space-x-4" aria-label={`Tab ${id}`}>
             {React.Children.map(children, (tab, index) => (
               <button
                 key={tab.props.title}

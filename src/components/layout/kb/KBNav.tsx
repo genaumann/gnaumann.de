@@ -58,58 +58,45 @@ const KBNav = ({index}: KBNavProps) => {
 
   return (
     <nav className="not-prose mt-3">
-      <ul role="list">
-        <TreeView
-          data={dataTree}
-          expandedIds={expandIds}
-          className="space-y-1"
-          expandOnKeyboardSelect
-          onExpand={({element, isExpanded}) => {
-            isExpanded
-              ? setExpandIds([...expandIds, element.id])
-              : setExpandIds(expandIds.filter(elem => elem !== element.id))
-          }}
-          nodeRenderer={({
-            element,
-            isBranch,
-            isExpanded,
-            getNodeProps,
-            level
-          }) => {
-            const textCss = {
-              'text-slate-300/80': !isBranch && pathname !== element.id,
-              'text-slate-300': isBranch && pathname !== element.id,
-              'text-primary': pathname === element.id,
-              'font-bold': isBranch
-            }
-            const levelCss = {
-              'pl-4': level === 2,
-              'ml-4 pl-4': level === 3,
-              'pl-12': level === 4,
-              'border-l border-secondary py-1': level > 1,
-              'border-primary': level > 1 && pathname === element.id
-            }
-            return (
-              <>
-                {level > 2 ? (
-                  <div
-                    {...getNodeProps()}
-                    className={clsx(
-                      'border-l border-secondary space-x-1 space-y-2'
-                    )}>
-                    <div className={clsx(levelCss, 'space-x-1 space-y-2')}>
-                      <Link
-                        className={clsx(textCss)}
-                        href={typeof element.id === 'string' ? element.id : ''}>
-                        {element.name}
-                      </Link>
-                      {isBranch && <ChildIcon isOpen={isExpanded} />}
-                    </div>
-                  </div>
-                ) : (
-                  <div
-                    {...getNodeProps()}
-                    className={clsx(levelCss, 'space-x-1 space-y-2')}>
+      <TreeView
+        data={dataTree}
+        expandedIds={expandIds}
+        className="space-y-1"
+        expandOnKeyboardSelect
+        onExpand={({element, isExpanded}) => {
+          isExpanded
+            ? setExpandIds([...expandIds, element.id])
+            : setExpandIds(expandIds.filter(elem => elem !== element.id))
+        }}
+        nodeRenderer={({
+          element,
+          isBranch,
+          isExpanded,
+          getNodeProps,
+          level
+        }) => {
+          const textCss = {
+            'text-slate-300/80': !isBranch && pathname !== element.id,
+            'text-slate-300': isBranch && pathname !== element.id,
+            'text-primary': pathname === element.id,
+            'font-bold': isBranch
+          }
+          const levelCss = {
+            'pl-4': level === 2,
+            'ml-4 pl-4': level === 3,
+            'pl-12': level === 4,
+            'border-l border-secondary py-1': level > 1,
+            'border-primary': level > 1 && pathname === element.id
+          }
+          return (
+            <>
+              {level > 2 ? (
+                <div
+                  {...getNodeProps()}
+                  className={clsx(
+                    'border-l border-secondary space-x-1 space-y-2'
+                  )}>
+                  <div className={clsx(levelCss, 'space-x-1 space-y-2')}>
                     <Link
                       className={clsx(textCss)}
                       href={typeof element.id === 'string' ? element.id : ''}>
@@ -117,12 +104,23 @@ const KBNav = ({index}: KBNavProps) => {
                     </Link>
                     {isBranch && <ChildIcon isOpen={isExpanded} />}
                   </div>
-                )}
-              </>
-            )
-          }}
-        />
-      </ul>
+                </div>
+              ) : (
+                <div
+                  {...getNodeProps()}
+                  className={clsx(levelCss, 'space-x-1 space-y-2')}>
+                  <Link
+                    className={clsx(textCss)}
+                    href={typeof element.id === 'string' ? element.id : ''}>
+                    {element.name}
+                  </Link>
+                  {isBranch && <ChildIcon isOpen={isExpanded} />}
+                </div>
+              )}
+            </>
+          )
+        }}
+      />
     </nav>
   )
 }

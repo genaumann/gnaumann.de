@@ -22,6 +22,7 @@ const SearchButton: React.FC<SearchButtonProps> = ({
       <button
         {...props}
         onClick={() => setIsOpen(!isOpen)}
+        aria-label="Suchen"
         className={clsx(
           {
             'bg-gray-200 min-w-full rounded-xl': location === 'body'

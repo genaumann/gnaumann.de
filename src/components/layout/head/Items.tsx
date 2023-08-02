@@ -60,12 +60,14 @@ export const SocialIcons = () => {
       <Link
         href="https://de.linkedin.com/in/gino-naumann-356993240"
         target="_blank"
+        aria-label="LinkedIn Profil von Gino Naumann"
         className="hover:text-primary">
         <SiLinkedin size={27} />
       </Link>
       <Link
         href="https://github.com/genaumann"
         className="hover:text-primary"
+        aria-label="GitHub Profil von Gino Naumann"
         target="_blank">
         <SiGithub size={27} />
       </Link>
