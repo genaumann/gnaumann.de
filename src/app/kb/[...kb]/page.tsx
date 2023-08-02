@@ -7,7 +7,7 @@ import Icon from '@/components/modules/kb/articles/Icons'
 import {Tab} from '@/components/modules/kb/articles/Tabs'
 import {findArticleByHref} from '@/utils'
 import {getPostBySlug, mdxOptions} from '@/utils/mdx'
-import {Metadata, ResolvingMetadata} from 'next'
+import {Metadata} from 'next'
 import {MDXRemote} from 'next-mdx-remote/rsc'
 import dynamic from 'next/dynamic'
 import {notFound} from 'next/navigation'
@@ -44,18 +44,13 @@ const components = {
   Icon
 }
 
-export const generateMetadata = (
-  {params}: KBArticleProps,
-  parent?: ResolvingMetadata
-): Metadata => {
-  const prevMeta = parent as Metadata
+export const generateMetadata = ({params}: KBArticleProps): Metadata => {
   const article = findArticleByHref(KBIndex, `/kb/${params.kb.join('/')}`)
 
   const title = `GNaumann · KB · ${article ? article.title : 'Unknown'}`
   const description = article ? article.description : 'GNaumann KB Artikel'
 
   return {
-    ...prevMeta,
     metadataBase: new URL(basePath),
     title,
     description,

@@ -5,7 +5,7 @@ import {ImageResponse, NextRequest, NextResponse} from 'next/server'
 import KBIndex from '@/KBIndex.json'
 
 export const runtime = 'edge'
-export const size = {
+const size = {
   width: 1200,
   height: 630
 }
