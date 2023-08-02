@@ -5,7 +5,7 @@ import {ImageResponse, NextRequest, NextResponse} from 'next/server'
 import KBIndex from '@/KBIndex.json'
 
 export const runtime = 'edge'
-export const size = {
+const size = {
   width: 1200,
   height: 630
 }
@@ -50,6 +50,7 @@ export const GET = async (
               )}
             </div>
             <div tw="flex border border-sky-500 h-full" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={`${request.nextUrl.origin}/gnaumann_col_cut.png`}
               alt="Logo"

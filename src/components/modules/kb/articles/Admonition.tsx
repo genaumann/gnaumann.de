@@ -106,6 +106,7 @@ export const Content = ({children}: ChildProps) => {
     if (children && setHasContent) {
       setHasContent(true)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [children])
 
   return (
