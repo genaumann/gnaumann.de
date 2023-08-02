@@ -36,8 +36,5 @@ export const getPostBySlug = async ({kb}: getPostBySlugProps) => {
 export const getMDXByPath = async (filePath: string) => {
   const fullPath = path.join(rootDirectory, filePath)
 
-  const fileContent = fs.readFileSync(fullPath, {encoding: 'utf8'})
-
-  return (await compileMDX({source: fileContent, options: {mdxOptions}}))
-    .content
+  return fs.readFileSync(fullPath, {encoding: 'utf8'})
 }
