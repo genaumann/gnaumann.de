@@ -7,6 +7,13 @@ export type NavItemsT = {
   entries?: NavItemsT[]
 }
 
+export type KBHeadings = {
+  level: number
+  title: string
+  id: string
+  children: KBHeadings[]
+}
+
 export type KBIndex = {
   title: string
   href: string
@@ -16,6 +23,7 @@ export type KBIndex = {
   sort?: number
   createDate: string
   modifyDate: string
+  headings: KBHeadings[]
   icons?: string[]
   children?: KBIndex[]
 }
