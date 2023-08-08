@@ -62,12 +62,12 @@ const KBToc = () => {
   const headerID = useTableOfContents(article?.headings || [])
 
   return (
-    <div className="sticky top-[6rem] h-80">
+    <>
       <p className="font-bold mb-3">Auf dieser Seite</p>
       {article && article.headings.length > 0 && (
         <TocTree headerID={headerID} tree={article.headings} />
       )}
-    </div>
+    </>
   )
 }
 
