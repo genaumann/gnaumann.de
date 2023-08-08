@@ -2,7 +2,7 @@ import * as fs from 'fs'
 import path from 'path'
 import yaml from 'yaml'
 import * as child from 'child_process'
-import {KBIndex} from '@/types'
+import {KBHeadings, KBIndex} from '@/types'
 
 interface MdxMetadata {
   [key: string]: any
@@ -14,6 +14,50 @@ interface MdxMetadata {
 interface Sortable {
   sort?: number
   [key: string]: any
+}
+
+const extractHeadings = (content: string): KBHeadings[] => {
+  const headingRegex = /^(\#+) (.+?) (?:\{#(.+?)\})?$/gm
+
+  let match
+  const allHeadings: KBHeadings[] = []
+
+  while ((match = headingRegex.exec(content)) !== null) {
+    const level = match[1].length
+    const title = match[2].trim()
+    const id = match[3] || ''
+
+    allHeadings.push({
+      level,
+      title,
+      id,
+      children: []
+    })
+  }
+
+  return buildHeadTree(allHeadings)
+}
+
+const buildHeadTree = (headings: KBHeadings[]): KBHeadings[] => {
+  const stack: KBHeadings[] = []
+  const result: KBHeadings[] = []
+
+  for (const heading of headings) {
+    while (stack.length > 0 && stack[stack.length - 1].level >= heading.level) {
+      stack.pop()
+    }
+
+    if (stack.length === 0) {
+      result.push(heading)
+    } else {
+      const parent = stack[stack.length - 1]
+      parent.children.push(heading)
+    }
+
+    stack.push(heading)
+  }
+
+  return result
 }
 
 const getMdxStructure = (dir: string, depth = 0): string[] => {
@@ -92,6 +136,7 @@ const buildTreeObject = (filePath: string, run: number) => {
     createDate: createDate.toString().replace('\n', '') || fallbackDate,
     modifyDate: modifyDate.toString().replace('\n', '') || fallbackDate,
     icons: metaData.icons || undefined,
+    headings: extractHeadings(fileContent),
     children: undefined
   }
 
