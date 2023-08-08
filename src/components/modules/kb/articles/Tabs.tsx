@@ -72,7 +72,7 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
           name="tabs"
           onChange={e => {
             setCurrentTab(e.target.selectedIndex)
-            router.push(
+            router.replace(
               `${pathname}?${createQueryString(
                 `t${id}`,
                 e.target.selectedIndex.toString()
@@ -97,7 +97,7 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
                 key={tab.props.title}
                 onClick={() => {
                   setCurrentTab(index)
-                  router.push(
+                  router.replace(
                     `${pathname}?${createQueryString(
                       `t${id}`,
                       index.toString()
