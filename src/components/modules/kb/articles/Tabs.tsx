@@ -1,6 +1,6 @@
 'use client'
 
-import {addComponent} from '@/redux/kb/component-counter'
+import {addComponent, resetComponent} from '@/redux/kb/component-counter'
 import {AppDispatch, useAppSelector} from '@/redux/store'
 import clsx from 'clsx'
 import {usePathname, useRouter, useSearchParams} from 'next/navigation'
@@ -40,8 +40,14 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
   )
 
   useEffect(() => {
+    return () => {
+      dispatch(resetComponent())
+    }
+  }, [pathname])
+
+  useEffect(() => {
     dispatch(addComponent(uid))
-  }, [uid, dispatch])
+  }, [uid])
 
   const id = useAppSelector(
     state => state.KBCompontentCounter.componentIds[uid]
