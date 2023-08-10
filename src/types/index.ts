@@ -16,6 +16,7 @@ export type KBHeadings = {
 
 export type KBIndex = {
   title: string
+  author: string
   href: string
   head: boolean
   description: string

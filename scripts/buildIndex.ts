@@ -114,6 +114,9 @@ const buildTreeObject = (filePath: string, run: number) => {
   const modifyDate = child.execSync(
     `git log -1 --format=%cd --date=format:'%Y-%m-%d' ${filePath}`
   )
+  const author = child.execSync(
+    `git log -1 --pretty=format:"%an" -- ${filePath}`
+  )
   const fallbackDate = new Date().toISOString().split('T')[0]
   let children: string[] = []
 
@@ -129,6 +132,7 @@ const buildTreeObject = (filePath: string, run: number) => {
           .replace(/(\s(<.*?>)(.*?)(<\/.*?>))|(\s<.*?\/>)/g, '')
       : 'Unknown',
     href: filePath.replace(/^src\/articles/g, '/kb').replace(/.mdx$/g, ''),
+    author: author.toString() || 'Gino Naumann',
     description: metaData.description,
     level: run,
     sort: metaData.sort,
