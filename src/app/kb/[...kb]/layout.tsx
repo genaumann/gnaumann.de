@@ -4,6 +4,7 @@ import KBNav from '@/components/layout/kb/KBNav'
 import SearchButton from '@/components/SearchButton'
 import KBIndex from '@/KBIndex.json'
 import KBToc from '@/components/layout/kb/KBToc'
+import KBMeta from '@/components/layout/kb/KBMeta'
 
 const KBLayout = ({children}: KBLayoutProps) => {
   return (
@@ -16,7 +17,12 @@ const KBLayout = ({children}: KBLayoutProps) => {
           <SearchButton className="py-2" location="body" />
           <KBNav index={KBIndex} />
         </div>
-        <article className="grow mt-3 prose">{children}</article>
+        <div className="grow">
+          <article className="prose">{children}</article>
+          <div className="mt-12 text-slate-500">
+            <KBMeta />
+          </div>
+        </div>
         <div className="hidden overflow-y-auto xl:block xl:sticky top-[6rem] h-[calc(100vh-180px)]">
           <KBToc />
         </div>
