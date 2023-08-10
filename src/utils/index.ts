@@ -69,3 +69,29 @@ export const findArticleByHref = (
 
   return null
 }
+
+export const calculateRelativeTime = (pastDateString: string): string => {
+  const oneDay = 24 * 60 * 60 * 1000
+  const oneWeek = oneDay * 7
+  const oneMonth = oneDay * 30
+  const oneYear = oneDay * 365
+
+  const currentDate = new Date()
+  const pastDate = new Date(pastDateString)
+
+  const differenceInMillis = currentDate.getTime() - pastDate.getTime()
+
+  if (differenceInMillis < oneWeek) {
+    const days = Math.round(differenceInMillis / oneDay)
+    return `${days} Tag${days > 1 ? 'en' : ''}`
+  } else if (differenceInMillis < oneMonth) {
+    const weeks = Math.round(differenceInMillis / oneWeek)
+    return `${weeks} Woche${weeks > 1 ? 'n' : ''}`
+  } else if (differenceInMillis < oneYear) {
+    const months = Math.round(differenceInMillis / oneMonth)
+    return `${months} Monat${months > 1 ? 'e' : ''}`
+  } else {
+    const years = Math.round(differenceInMillis / oneYear)
+    return `${years} Jahr${years > 1 ? 'en' : ''}`
+  }
+}
