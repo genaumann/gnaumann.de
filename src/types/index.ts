@@ -50,3 +50,9 @@ export interface KBLayoutProps extends ChildProps, KBLayout {}
 export interface KBNavProps {
   index: KBIndex[]
 }
+
+export enum Theme {
+  LIGHT = 'light',
+  DARK = 'dark',
+  AUTO = 'auto'
+}

@@ -2,10 +2,12 @@ import {configureStore} from '@reduxjs/toolkit'
 import {TypedUseSelectorHook, useSelector} from 'react-redux'
 
 import KBCompontentCounter from './kb/component-counter'
+import AppTheme from './app/theme'
 
 export const reduxStore = configureStore({
   reducer: {
-    KBCompontentCounter
+    KBCompontentCounter,
+    AppTheme
   }
 })
 
