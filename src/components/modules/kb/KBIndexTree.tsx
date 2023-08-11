@@ -66,7 +66,7 @@ const KBIndexNode = ({node}: {node: KBIndex}) => {
 
 const KBIndexTree = () => {
   return (
-    <nav className="mt-3 md:flex-grow max-w-[734px] md:mr-0 md:ml-auto">
+    <nav className="mt-3 max-w-[734px] md:mx-auto">
       <ul role="list" className={clsx(styles.tree)}>
         <li className="!pl-3">
           <details open>
