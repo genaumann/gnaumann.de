@@ -63,9 +63,11 @@ const KBToc = () => {
 
   return (
     <>
-      <p className="font-bold mb-3">Auf dieser Seite</p>
       {article && article.headings.length > 0 && (
-        <TocTree headerID={headerID} tree={article.headings} />
+        <>
+          <p className="font-bold mb-3">Auf dieser Seite</p>
+          <TocTree headerID={headerID} tree={article.headings} />
+        </>
       )}
     </>
   )
