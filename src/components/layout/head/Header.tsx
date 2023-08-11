@@ -14,19 +14,7 @@ const Header = () => {
     <header className="border-b border-secondary/60 sticky top-0 backdrop-blur z-10">
       <nav className="mx-4 md:mx-7 lg:mx-10 py-2 flex items-center">
         <Link href={'/'}>
-          <Image
-            src={imageLight}
-            alt="Home"
-            height={65}
-            className="dark:hidden"
-          />
-
-          <Image
-            src={imageDark}
-            alt="Home"
-            height={65}
-            className="hidden dark:block"
-          />
+          <Image src={imageLight} alt="Home" height={65} />
         </Link>
         <ul className="hidden md:flex space-x-6 mx-auto font-bold">
           <NavEntries />
