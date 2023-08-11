@@ -76,7 +76,8 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
               `${pathname}?${createQueryString(
                 `t${id}`,
                 e.target.selectedIndex.toString()
-              )}`
+              )}`,
+              {scroll: false}
             )
           }}
           className="block py-2 border-0 pr-8 pl-4 w-full rounded-xl bg-gray-200 font-bold text-base focus:outline-none">
@@ -101,7 +102,8 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
                     `${pathname}?${createQueryString(
                       `t${id}`,
                       index.toString()
-                    )}`
+                    )}`,
+                    {scroll: false}
                   )
                 }}
                 className={clsx(
