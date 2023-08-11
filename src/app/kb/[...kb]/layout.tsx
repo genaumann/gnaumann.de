@@ -23,7 +23,7 @@ const KBLayout = ({children}: KBLayoutProps) => {
             <KBMeta />
           </div>
         </div>
-        <div className="hidden overflow-y-auto xl:block xl:sticky top-[6rem] h-[calc(100vh-180px)]">
+        <div className="hidden overflow-y-auto xl:block xl:sticky top-[6rem] h-[calc(100vh-180px)] min-w-[224px] max-w-[224px]">
           <KBToc />
         </div>
       </div>
