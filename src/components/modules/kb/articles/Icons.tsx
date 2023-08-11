@@ -23,7 +23,8 @@ import {
   SiPython,
   SiSaltproject,
   SiTypescript,
-  SiGnubash
+  SiGnubash,
+  SiGit
 } from 'react-icons/si'
 import {IconBaseProps} from 'react-icons'
 
@@ -71,7 +72,8 @@ const Icon: React.FC<IconProps> = ({name, ...props}) => {
     siSaltproject: (
       <SiSaltproject color="#57BCAD" {...(props as IconBaseProps)} />
     ),
-    siGnubash: <SiGnubash color="#4EAA25" {...(props as IconBaseProps)} />
+    siGnubash: <SiGnubash color="#4EAA25" {...(props as IconBaseProps)} />,
+    siGit: <SiGit color="#F05032" {...(props as IconBaseProps)} />
   }
 
   return iconMap[name] || <FontAwesomeIcon icon={faBlockQuestion} fixedWidth />
