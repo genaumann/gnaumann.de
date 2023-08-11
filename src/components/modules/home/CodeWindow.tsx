@@ -50,7 +50,9 @@ const Code = ({children, maxLines}: CodeWindowCodeProps) => {
             {lineNum.join('\n')}
           </div>
           <code className="flex-auto block text-slate-50 pt-4 pb-4 px-4 overflow-auto">
-            <div ref={ref}>{children}</div>
+            <div className="text-black" ref={ref}>
+              {children}
+            </div>
           </code>
         </pre>
       </div>
