@@ -14,6 +14,7 @@ import {notFound} from 'next/navigation'
 import {Suspense} from 'react'
 import KBIndex from '@/KBIndex.json'
 import {basePath} from '@/config'
+import {Grid, GridItem} from '@/components/modules/kb/articles/Grid'
 
 interface KBArticleProps {
   params: {
@@ -41,7 +42,9 @@ const components = {
   Tab,
   CodeBlockFile,
   CodeBlockPlain,
-  Icon
+  Icon,
+  Grid,
+  GridItem
 }
 
 export const generateMetadata = ({params}: KBArticleProps): Metadata => {
