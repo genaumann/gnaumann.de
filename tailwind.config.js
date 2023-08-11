@@ -67,7 +67,7 @@ module.exports = {
             '--tw-prose-bold': 'rgb(var(--color-gray-700))',
             '--tw-prose-counters': 'rgb(var(--color-gray-700))',
             '--tw-prose-bullets': 'rgb(var(--color-gray-400))',
-            '--tw-prose-hr': 'rgb(var(--color-gray-300))',
+            '--tw-prose-hr': 'rgb(var(--color-gray-200))',
             '--tw-prose-quotes': 'rgb(var(--color-gray-700))',
             '--tw-prose-quote-borders': 'rgb(var(--color-gray-300))',
             '--tw-prose-captions': 'rgb(var(--color-gray-700))',
