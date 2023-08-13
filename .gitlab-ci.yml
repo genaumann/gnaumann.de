@@ -1,0 +1,102 @@
+---
+stages:
+  - lint
+  - release
+  - build
+  - deploy
+
+workflow:
+  rules:
+    - if: '$CI_COMMIT_TAG'
+      when: never
+    - if: '$CI_COMMIT_MESSAGE =~ /^chore\(release\):.*/ && $CI_PIPELINE_SOURCE != "pipeline"'
+      when: never
+    - when: always
+
+variables:
+  CL_IMAGE: registry.gitlab.com/genaumann/container/commitlint:17.7.1
+
+include:
+  # commitlint
+  - project: 'ctbc/commitlint'
+    ref: 'v1.2.1'
+    file: '/templates/.gitlab-ci-commitlint.yml'
+
+.node-template:
+  image: node:18-alpine3.18
+  cache:
+    key: $CI_COMMIT_REF_SLUG
+    paths:
+      - node_modules/
+  before_script:
+    - npm i
+
+next-lint:
+  stage: lint
+  extends: .node-template
+  rules:
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+  script:
+    - npm run lint
+
+release:
+  stage: release
+  image: registry.gitlab.com/genaumann/container/semantic-release:21.0.7
+  rules:
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
+  artifacts:
+    paths:
+      - VERSION
+      - package.json
+      - package-lock.json
+  script:
+    - semantic-release
+
+next-build:
+  stage: build
+  extends: .node-template
+  needs:
+    - job: release
+      artifacts: true
+  rules:
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
+  artifacts:
+    when: on_success
+    expire_in: '30 days'
+    paths:
+      - .next
+      - public
+  script:
+    - npm run build
+
+container-build:
+  stage: build
+  image:
+    name: gcr.io/kaniko-project/executor:v1.13.0-debug
+    entrypoint: ['']
+  rules:
+    - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
+  needs:
+    - job: next-build
+      artifacts: true
+  before_script:
+    - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
+  script:
+    - VERSION=$(cat VERSION)
+    - /kaniko/executor
+      --context "${CI_PROJECT_DIR}"
+      --dockerfile "${CI_PROJECT_DIR}/Containerfile"
+      --destination "${CI_REGISTRY}/${CI_PROJECT_PATH}/gna-web:${VERSION}"
+      --destination "${CI_REGISTRY}/${CI_PROJECT_PATH}/gna-web:latest"
+
+salt-deploy:
+  stage: deploy
+  image: registry.gitlab.com/genaumann/salt-api:latest
+  needs:
+    - job: container-build
+      artifacts: false
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+  script:
+    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web
