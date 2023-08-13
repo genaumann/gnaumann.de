@@ -49,11 +49,8 @@ export const convertIndexTree = (originalTree: KBIndex): ITreeNode => {
 
 export const findArticleByHref = (
   tree: KBIndex[],
-  href: string | string[] | undefined
+  href: string
 ): KBIndex | null => {
-  if (Array.isArray(href)) {
-    href = href.join('/')
-  }
   for (const node of tree) {
     if (node.href === href) {
       return node

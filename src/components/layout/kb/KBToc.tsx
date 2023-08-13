@@ -1,12 +1,10 @@
 'use client'
 
-import {findArticleByHref} from '@/utils'
-import KBIndexJSON from '@/KBIndex.json'
-import {usePathname} from 'next/navigation'
 import Link from 'next/link'
 import {KBHeadings} from '@/types'
 import clsx from 'clsx'
 import useTableOfContents from '@/hooks/useToc'
+import {useArticle} from '@/hooks/useArticle'
 
 interface TocTreeProps {
   tree: KBHeadings[]
@@ -57,8 +55,7 @@ const TocNode = ({node, headerID}: TocNodeProps) => {
 }
 
 const KBToc = () => {
-  const pathname = usePathname()
-  const article = findArticleByHref(KBIndexJSON, pathname)
+  const {article} = useArticle()
   const headerID = useTableOfContents(article?.headings || [])
 
   return (

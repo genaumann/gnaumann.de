@@ -1,18 +1,16 @@
 'use client'
 
 import {calculateRelativeTime, findArticleByHref} from '@/utils'
-import KBIndex from '@/KBIndex.json'
-import {usePathname} from 'next/navigation'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
   faFilePen,
   faFilePlus,
   faUserPen
 } from '@fortawesome/pro-duotone-svg-icons'
+import {useArticle} from '@/hooks/useArticle'
 
 const KBMeta = () => {
-  const pathname = usePathname()
-  const article = findArticleByHref(KBIndex, pathname)
+  const {article} = useArticle()
 
   if (article) {
     const createAgo = calculateRelativeTime(article.createDate)
