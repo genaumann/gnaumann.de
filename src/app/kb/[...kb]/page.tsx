@@ -36,7 +36,9 @@ export const generateMetadata = ({params}: KBArticleProps): Metadata => {
     openGraph: {
       title,
       description,
-      url: `/${params.kb.join('/')}`,
+      url: `/kb/${params.kb.join('/')}`,
+      type: 'article',
+      authors: article?.author,
       siteName: 'gnaumann.de',
       images: [
         {
