@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://git.nauminet.de/websites/gnaumann/compare/v1.1.0...v1.1.1) (2023-08-13)
+
+
+### 🏗️ Build 🏗️
+
+* add Containerfile ([a029385](https://git.nauminet.de/websites/gnaumann/commit/a0293856a55844d3bdc44d35b80e76113f945ac4))
+
 ## [1.1.0](https://git.nauminet.de/websites/gnaumann/compare/v1.0.0...v1.1.0) (2023-08-13)
 
 
