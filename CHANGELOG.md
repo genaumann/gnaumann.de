@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://git.nauminet.de/websites/gnaumann/compare/v1.2.0...v1.2.1) (2023-08-13)
+
+
+### 🐛 Bugfix 🐛
+
+* **seo:** opengraph url path ([8ea7b32](https://git.nauminet.de/websites/gnaumann/commit/8ea7b3262f6e627c10d7baa2b832d1684631a85d))
+
 ## [1.2.0](https://git.nauminet.de/websites/gnaumann/compare/v1.1.2...v1.2.0) (2023-08-13)
 
 
