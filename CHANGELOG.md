@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.2](https://git.nauminet.de/websites/gnaumann/compare/v1.1.1...v1.1.2) (2023-08-13)
+
+
+### 🏗️ Build 🏗️
+
+* change destination path ([80e6a5b](https://git.nauminet.de/websites/gnaumann/commit/80e6a5bd5572b5ce42ead5e8fae885c8404a3a3f))
+
 ## [1.1.1](https://git.nauminet.de/websites/gnaumann/compare/v1.1.0...v1.1.1) (2023-08-13)
 
 
