@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "prebuild": "tsx scripts/buildIndex.ts",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -60,6 +61,7 @@
     "remark-custom-heading-id": "^1.0.1",
     "remark-emoji": "^3.1.2",
     "remark-frontmatter": "^4.0.1",
-    "remark-gfm": "^3.0.1"
+    "remark-gfm": "^3.0.1",
+    "tsx": "^3.12.7"
   }
 }
