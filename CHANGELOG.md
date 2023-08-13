@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://git.nauminet.de/websites/gnaumann/compare/v1.0.0...v1.1.0) (2023-08-13)
+
+
+### 💿 Continuous Integration 💿
+
+* install git in build container ([53447f1](https://git.nauminet.de/websites/gnaumann/commit/53447f16c442333fca613a3fac1a29d445f3d854))
+
 ## 1.0.0 (2023-08-13)
 
 
