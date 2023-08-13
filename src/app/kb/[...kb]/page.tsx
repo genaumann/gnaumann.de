@@ -15,36 +15,12 @@ import {Suspense} from 'react'
 import KBIndex from '@/KBIndex.json'
 import {basePath} from '@/config'
 import {Grid, GridItem} from '@/components/modules/kb/articles/Grid'
+import {TestENV} from '@/components/modules/kb/articles/TestENV'
 
 interface KBArticleProps {
   params: {
     kb: string[]
   }
-}
-
-const Tabs = dynamic(() => import('@/components/modules/kb/articles/Tabs'), {
-  ssr: false
-})
-const CodeBlockFile = dynamic(
-  () => import('@/components/modules/kb/articles/CodeBlockFile'),
-  {ssr: false}
-)
-
-const components = {
-  Admonition,
-  AdmonitionTitle,
-  AdmonitionContent,
-  Tabs: (props: any) => (
-    <Suspense>
-      <Tabs {...props}>{props.children}</Tabs>
-    </Suspense>
-  ),
-  Tab,
-  CodeBlockFile,
-  CodeBlockPlain,
-  Icon,
-  Grid,
-  GridItem
 }
 
 export const generateMetadata = ({params}: KBArticleProps): Metadata => {
@@ -92,7 +68,41 @@ export const generateMetadata = ({params}: KBArticleProps): Metadata => {
 
 const KBArticle = async ({params}: KBArticleProps) => {
   try {
-    const {fileContent} = await getPostBySlug(params)
+    const {fileContent, meta} = await getPostBySlug(params)
+
+    const Tabs = dynamic(
+      () => import('@/components/modules/kb/articles/Tabs'),
+      {
+        ssr: false
+      }
+    )
+    const CodeBlockFile = dynamic(
+      () => import('@/components/modules/kb/articles/CodeBlockFile'),
+      {ssr: false}
+    )
+    const TestENV = dynamic(
+      () => import('@/components/modules/kb/articles/TestENV'),
+      {ssr: false}
+    )
+
+    const components = {
+      Admonition,
+      AdmonitionTitle,
+      AdmonitionContent,
+      Tabs: (props: any) => (
+        <Suspense>
+          <Tabs {...props}>{props.children}</Tabs>
+        </Suspense>
+      ),
+      Tab,
+      CodeBlockFile,
+      CodeBlockPlain,
+      Icon,
+      Grid,
+      GridItem,
+      TestENV: (props: any) => <TestENV conf={meta.testenv as TestENV[]} />
+    }
+
     return (
       <article className="prose">
         <MDXRemote
