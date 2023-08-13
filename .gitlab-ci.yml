@@ -68,6 +68,7 @@ next-build:
       - .next
       - public
   script:
+    - apk add git
     - npm run build
 
 container-build:
