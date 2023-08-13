@@ -88,8 +88,8 @@ container-build:
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
       --dockerfile "${CI_PROJECT_DIR}/Containerfile"
-      --destination "${CI_REGISTRY}/${CI_PROJECT_PATH}/gna-web:${VERSION}"
-      --destination "${CI_REGISTRY}/${CI_PROJECT_PATH}/gna-web:latest"
+      --destination "${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}"
+      --destination "${CI_REGISTRY}/genaumann/container/gna-web:latest"
 
 salt-deploy:
   stage: deploy
