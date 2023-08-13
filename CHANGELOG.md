@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.2.0](https://git.nauminet.de/websites/gnaumann/compare/v1.1.2...v1.2.0) (2023-08-13)
+
+
+### 💿 Continuous Integration 💿
+
+* optimize pipeline config ([c3caa42](https://git.nauminet.de/websites/gnaumann/commit/c3caa426243481b4869663a5cd57cb5e0d9d3cdd))
+
+
+### 🏗️ Build 🏗️
+
+* add NEXT_URL env ([4c3a319](https://git.nauminet.de/websites/gnaumann/commit/4c3a3197b1572d881db8e6a4932eb97d3d03f6d8))
+
 ## [1.1.2](https://git.nauminet.de/websites/gnaumann/compare/v1.1.1...v1.1.2) (2023-08-13)
 
 
