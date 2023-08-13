@@ -19,7 +19,7 @@ variables:
 include:
   # commitlint
   - project: 'ctbc/commitlint'
-    ref: 'v1.2.1'
+    ref: 'v1.3.0'
     file: '/templates/.gitlab-ci-commitlint.yml'
 
 .node-template:
