@@ -39,6 +39,12 @@ export const generateMetadata = async ({
       url: `/kb/${params.kb.join('/')}`,
       type: 'article',
       authors: article?.author,
+      modifiedTime: article
+        ? new Date(article.modifyDate).toISOString()
+        : undefined,
+      publishedTime: article
+        ? new Date(article.createDate).toISOString()
+        : undefined,
       siteName: 'gnaumann.de',
       images: [
         {
