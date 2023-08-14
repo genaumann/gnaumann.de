@@ -13,7 +13,6 @@ import dynamic from 'next/dynamic'
 import {notFound} from 'next/navigation'
 import {Suspense} from 'react'
 import KBIndex from '@/KBIndex.json'
-import {basePath} from '@/config'
 import {Grid, GridItem} from '@/components/modules/kb/articles/Grid'
 import {TestENV} from '@/components/modules/kb/articles/TestENV'
 
@@ -23,14 +22,15 @@ interface KBArticleProps {
   }
 }
 
-export const generateMetadata = ({params}: KBArticleProps): Metadata => {
+export const generateMetadata = async ({
+  params
+}: KBArticleProps): Promise<Metadata> => {
   const article = findArticleByHref(KBIndex, `/kb/${params.kb.join('/')}`)
 
   const title = `GNaumann · KB · ${article ? article.title : 'Unknown'}`
   const description = article ? article.description : 'GNaumann KB Artikel'
 
   return {
-    metadataBase: new URL(basePath),
     title,
     description,
     openGraph: {

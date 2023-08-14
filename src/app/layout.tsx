@@ -6,21 +6,14 @@ import {config} from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import Footer from '@/components/layout/foot/Footer'
 import ReduxProvider from '@/redux/Provider'
+import {dynamicMetadata} from '@/utils/metadata'
 
 const inter = Inter({subsets: ['latin']})
 
-export const metadata: Metadata = {
-  title: 'GNaumann · Home',
-  description: 'Gino Naumann - Linux Administrator 🐧',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true
-    }
-  }
-}
+const title = 'GNaumann · Home'
+const description = 'Gino Naumann - Linux Administrator 🐧'
+
+export const metadata: Metadata = dynamicMetadata(title, description, '/', true)
 
 const RootLayout = ({children}: {children: React.ReactNode}) => {
   config.autoAddCss = false
