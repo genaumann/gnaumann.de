@@ -21,16 +21,21 @@ export const mdxOptions: CompileOptions = {
 }
 
 export const getPostBySlug = async ({kb}: getPostBySlugProps) => {
-  const filePath = path.join(rootDirectory, 'articles', `${kb.join('/')}.mdx`)
+  try {
+    const filePath = path.join(rootDirectory, 'articles', `${kb.join('/')}.mdx`)
 
-  const fileContent = fs.readFileSync(filePath, {encoding: 'utf8'})
+    const fileContent = fs.readFileSync(filePath, {encoding: 'utf8'})
 
-  const {frontmatter} = await compileMDX({
-    source: fileContent,
-    options: {parseFrontmatter: true, mdxOptions}
-  })
+    const {frontmatter} = await compileMDX({
+      source: fileContent,
+      options: {parseFrontmatter: true, mdxOptions}
+    })
 
-  return {meta: {...frontmatter}, fileContent}
+    return {meta: {...frontmatter}, fileContent}
+  } catch (e) {
+    console.log(`${kb.join('/')} not found`)
+    return {}
+  }
 }
 
 export const getMDXByPath = async (filePath: string) => {

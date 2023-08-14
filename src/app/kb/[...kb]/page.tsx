@@ -75,53 +75,50 @@ export const generateMetadata = async ({
 }
 
 const KBArticle = async ({params}: KBArticleProps) => {
-  try {
-    const {fileContent, meta} = await getPostBySlug(params)
+  const {fileContent, meta} = await getPostBySlug(params)
 
-    const Tabs = dynamic(
-      () => import('@/components/modules/kb/articles/Tabs'),
-      {
-        ssr: false
-      }
-    )
-    const CodeBlockFile = dynamic(
-      () => import('@/components/modules/kb/articles/CodeBlockFile'),
-      {ssr: false}
-    )
-    const TestENV = dynamic(
-      () => import('@/components/modules/kb/articles/TestENV'),
-      {ssr: false}
-    )
-
-    const components = {
-      Admonition,
-      AdmonitionTitle,
-      AdmonitionContent,
-      Tabs: (props: any) => (
-        <Suspense>
-          <Tabs {...props}>{props.children}</Tabs>
-        </Suspense>
-      ),
-      Tab,
-      CodeBlockFile,
-      CodeBlockPlain,
-      Icon,
-      Grid,
-      GridItem,
-      TestENV: (props: any) => <TestENV conf={meta.testenv as TestENV[]} />
-    }
-
-    return (
-      <MDXRemote
-        source={fileContent}
-        // @ts-ignore
-        components={{...components}}
-        options={{mdxOptions}}
-      />
-    )
-  } catch (error) {
+  if (!fileContent) {
     notFound()
   }
+
+  const Tabs = dynamic(() => import('@/components/modules/kb/articles/Tabs'), {
+    ssr: false
+  })
+  const CodeBlockFile = dynamic(
+    () => import('@/components/modules/kb/articles/CodeBlockFile'),
+    {ssr: false}
+  )
+  const TestENV = dynamic(
+    () => import('@/components/modules/kb/articles/TestENV'),
+    {ssr: false}
+  )
+
+  const components = {
+    Admonition,
+    AdmonitionTitle,
+    AdmonitionContent,
+    Tabs: (props: any) => (
+      <Suspense>
+        <Tabs {...props}>{props.children}</Tabs>
+      </Suspense>
+    ),
+    Tab,
+    CodeBlockFile,
+    CodeBlockPlain,
+    Icon,
+    Grid,
+    GridItem,
+    TestENV: (props: any) => <TestENV conf={meta.testenv as TestENV[]} />
+  }
+
+  return (
+    <MDXRemote
+      source={fileContent}
+      // @ts-ignore
+      components={{...components}}
+      options={{mdxOptions}}
+    />
+  )
 }
 
 export default KBArticle
