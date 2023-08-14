@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.3.0](https://git.nauminet.de/websites/gnaumann/compare/v1.2.1...v1.3.0) (2023-08-14)
+
+
+### ✨ Feature ✨
+
+* **seo:** add article dates to meta ([a622911](https://git.nauminet.de/websites/gnaumann/commit/a622911472ff0165bc2944bf3a4c4e360c4f24bf))
+* **seo:** add robots ([9b57796](https://git.nauminet.de/websites/gnaumann/commit/9b57796a62fcfd3ce98b2f529d66b650c40f1454))
+* **seo:** use dynamicMetadata function ([f6a9f50](https://git.nauminet.de/websites/gnaumann/commit/f6a9f504cd6090cde43b2977d91663929600c053))
+
+
+### 🐛 Bugfix 🐛
+
+* **kb:** 404 error ([64b2426](https://git.nauminet.de/websites/gnaumann/commit/64b2426fe2116312fc8bb563a3f4b2c50bcc3765))
+* **seo:** duplicate html tag article ([56343b0](https://git.nauminet.de/websites/gnaumann/commit/56343b01157cc3bfdc9ddbc913786d62f3ccaabf))
+* **seo:** page titles for imprint and kb ([aaa891a](https://git.nauminet.de/websites/gnaumann/commit/aaa891a0fef329c011407003726a8d371e6dca5f))
+
+
+### 💿 Continuous Integration 💿
+
+* **deploy:** set specific container version ([775be0f](https://git.nauminet.de/websites/gnaumann/commit/775be0fd6a778ea38fe61ecebfcd6cc02a3aca3a))
+
 ## [1.2.1](https://git.nauminet.de/websites/gnaumann/compare/v1.2.0...v1.2.1) (2023-08-13)
 
 
