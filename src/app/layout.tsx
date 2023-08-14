@@ -11,7 +11,15 @@ const inter = Inter({subsets: ['latin']})
 
 export const metadata: Metadata = {
   title: 'GNaumann · Home',
-  description: 'Gino Naumann - Linux Administrator 🐧'
+  description: 'Gino Naumann - Linux Administrator 🐧',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true
+    }
+  }
 }
 
 const RootLayout = ({children}: {children: React.ReactNode}) => {
