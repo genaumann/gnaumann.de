@@ -13,7 +13,6 @@ import dynamic from 'next/dynamic'
 import {notFound} from 'next/navigation'
 import {Suspense} from 'react'
 import KBIndex from '@/KBIndex.json'
-import {basePath} from '@/config'
 import {Grid, GridItem} from '@/components/modules/kb/articles/Grid'
 import {TestENV} from '@/components/modules/kb/articles/TestENV'
 
@@ -23,14 +22,15 @@ interface KBArticleProps {
   }
 }
 
-export const generateMetadata = ({params}: KBArticleProps): Metadata => {
+export const generateMetadata = async ({
+  params
+}: KBArticleProps): Promise<Metadata> => {
   const article = findArticleByHref(KBIndex, `/kb/${params.kb.join('/')}`)
 
   const title = `GNaumann · KB · ${article ? article.title : 'Unknown'}`
   const description = article ? article.description : 'GNaumann KB Artikel'
 
   return {
-    metadataBase: new URL(basePath),
     title,
     description,
     openGraph: {
@@ -39,6 +39,12 @@ export const generateMetadata = ({params}: KBArticleProps): Metadata => {
       url: `/kb/${params.kb.join('/')}`,
       type: 'article',
       authors: article?.author,
+      modifiedTime: article
+        ? new Date(article.modifyDate).toISOString()
+        : undefined,
+      publishedTime: article
+        ? new Date(article.createDate).toISOString()
+        : undefined,
       siteName: 'gnaumann.de',
       images: [
         {
@@ -69,55 +75,50 @@ export const generateMetadata = ({params}: KBArticleProps): Metadata => {
 }
 
 const KBArticle = async ({params}: KBArticleProps) => {
-  try {
-    const {fileContent, meta} = await getPostBySlug(params)
+  const {fileContent, meta} = await getPostBySlug(params)
 
-    const Tabs = dynamic(
-      () => import('@/components/modules/kb/articles/Tabs'),
-      {
-        ssr: false
-      }
-    )
-    const CodeBlockFile = dynamic(
-      () => import('@/components/modules/kb/articles/CodeBlockFile'),
-      {ssr: false}
-    )
-    const TestENV = dynamic(
-      () => import('@/components/modules/kb/articles/TestENV'),
-      {ssr: false}
-    )
-
-    const components = {
-      Admonition,
-      AdmonitionTitle,
-      AdmonitionContent,
-      Tabs: (props: any) => (
-        <Suspense>
-          <Tabs {...props}>{props.children}</Tabs>
-        </Suspense>
-      ),
-      Tab,
-      CodeBlockFile,
-      CodeBlockPlain,
-      Icon,
-      Grid,
-      GridItem,
-      TestENV: (props: any) => <TestENV conf={meta.testenv as TestENV[]} />
-    }
-
-    return (
-      <article className="prose">
-        <MDXRemote
-          source={fileContent}
-          // @ts-ignore
-          components={{...components}}
-          options={{mdxOptions}}
-        />
-      </article>
-    )
-  } catch (error) {
+  if (!fileContent) {
     notFound()
   }
+
+  const Tabs = dynamic(() => import('@/components/modules/kb/articles/Tabs'), {
+    ssr: false
+  })
+  const CodeBlockFile = dynamic(
+    () => import('@/components/modules/kb/articles/CodeBlockFile'),
+    {ssr: false}
+  )
+  const TestENV = dynamic(
+    () => import('@/components/modules/kb/articles/TestENV'),
+    {ssr: false}
+  )
+
+  const components = {
+    Admonition,
+    AdmonitionTitle,
+    AdmonitionContent,
+    Tabs: (props: any) => (
+      <Suspense>
+        <Tabs {...props}>{props.children}</Tabs>
+      </Suspense>
+    ),
+    Tab,
+    CodeBlockFile,
+    CodeBlockPlain,
+    Icon,
+    Grid,
+    GridItem,
+    TestENV: (props: any) => <TestENV conf={meta.testenv as TestENV[]} />
+  }
+
+  return (
+    <MDXRemote
+      source={fileContent}
+      // @ts-ignore
+      components={{...components}}
+      options={{mdxOptions}}
+    />
+  )
 }
 
 export default KBArticle

@@ -99,7 +99,10 @@ salt-deploy:
   needs:
     - job: container-build
       artifacts: false
+    - job: release
+      artifacts: true
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
   script:
-    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web
+    - VERSION=$(cat VERSION)
+    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"gnaumann-web\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
