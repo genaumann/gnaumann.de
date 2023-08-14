@@ -112,14 +112,12 @@ const KBArticle = async ({params}: KBArticleProps) => {
     }
 
     return (
-      <article className="prose">
-        <MDXRemote
-          source={fileContent}
-          // @ts-ignore
-          components={{...components}}
-          options={{mdxOptions}}
-        />
-      </article>
+      <MDXRemote
+        source={fileContent}
+        // @ts-ignore
+        components={{...components}}
+        options={{mdxOptions}}
+      />
     )
   } catch (error) {
     notFound()
