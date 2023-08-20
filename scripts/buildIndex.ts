@@ -109,7 +109,7 @@ const buildTreeObject = (filePath: string, run: number) => {
   const fileContent = readFileContent(filePath)
   const metaData = parseMdxMetadata(filePath)
   const createDate = child.execSync(
-    `git log --follow --format=%aI -1 --date default ${filePath}`
+    `git log --format=%cd --date=short --diff-filter=A ${filePath}`
   )
   const modifyDate = child.execSync(
     `git log -1 --format=%cd --date=format:'%Y-%m-%d' ${filePath}`
