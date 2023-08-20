@@ -43,10 +43,12 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
     return () => {
       dispatch(resetComponent())
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname])
 
   useEffect(() => {
     dispatch(addComponent(uid))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [uid])
 
   const id = useAppSelector(

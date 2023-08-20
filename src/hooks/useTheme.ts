@@ -18,6 +18,7 @@ const useTheme = () => {
 
   useEffect(() => {
     setTheme(themeState === Theme.AUTO ? osMode : themeState)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [themeState])
 
   useEffect(() => {
