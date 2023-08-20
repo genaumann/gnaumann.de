@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.3.1](https://git.nauminet.de/websites/gnaumann/compare/v1.3.0...v1.3.1) (2023-08-20)
+
+
+### 🐛 Bugfix 🐛
+
+* **seo:** disallow imprint ([cceae4a](https://git.nauminet.de/websites/gnaumann/commit/cceae4a77335fc755af7b9135dee7987d187f97e))
+
+
+### 🖌️ Style 🖌️
+
+* fix linting warnings ([ccb3926](https://git.nauminet.de/websites/gnaumann/commit/ccb3926b5b2bde608ffe2f6a18fe8979a321160f))
+
+
+### 🏗️ Build 🏗️
+
+* fix createDate date ([c6188ed](https://git.nauminet.de/websites/gnaumann/commit/c6188eda53a406a65a68b6c21c175bd8196789e4))
+
 ## [1.3.0](https://git.nauminet.de/websites/gnaumann/compare/v1.2.1...v1.3.0) (2023-08-14)
 
 
