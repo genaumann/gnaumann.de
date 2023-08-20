@@ -5,7 +5,8 @@ const robots = (): MetadataRoute.Robots => {
   return {
     rules: {
       userAgent: '*',
-      allow: '/'
+      allow: '/',
+      disallow: '/imprint'
     },
     sitemap: `${basePath}/sitemap.xml`
   }
