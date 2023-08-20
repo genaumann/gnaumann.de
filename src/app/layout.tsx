@@ -8,7 +8,7 @@ import Footer from '@/components/layout/foot/Footer'
 import ReduxProvider from '@/redux/Provider'
 import {dynamicMetadata} from '@/utils/metadata'
 
-const inter = Inter({subsets: ['latin']})
+const inter = Inter({subsets: ['latin'], preload: true})
 
 const title = 'GNaumann · Home'
 const description = 'Gino Naumann - Linux Administrator 🐧'
