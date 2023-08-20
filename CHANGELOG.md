@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.2](https://git.nauminet.de/websites/gnaumann/compare/v1.3.1...v1.3.2) (2023-08-20)
+
+
+### 🐛 Bugfix 🐛
+
+* font preload issue ([8a237cd](https://git.nauminet.de/websites/gnaumann/commit/8a237cdeead28835b09773acae8aad4bee41fe0c))
+
 ## [1.3.1](https://git.nauminet.de/websites/gnaumann/compare/v1.3.0...v1.3.1) (2023-08-20)
 
 
