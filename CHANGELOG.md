@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.3](https://git.nauminet.de/websites/gnaumann/compare/v1.3.2...v1.3.3) (2023-08-25)
+
+
+### 🐛 Bugfix 🐛
+
+* remove deprecated head ([5b2c777](https://git.nauminet.de/websites/gnaumann/commit/5b2c7775e901ee3b8cbeebf3af2277dc2dc45c22))
+
 ## [1.3.2](https://git.nauminet.de/websites/gnaumann/compare/v1.3.1...v1.3.2) (2023-08-20)
 
 
