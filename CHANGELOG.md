@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.4](https://git.nauminet.de/websites/gnaumann/compare/v1.3.3...v1.3.4) (2023-08-25)
+
+
+### 🏗️ Build 🏗️
+
+* set HOSTNAME in Containerfile ([7b0ff66](https://git.nauminet.de/websites/gnaumann/commit/7b0ff66c7cf3c1f25234e2b895d84b91bcbc4424))
+
 ## [1.3.3](https://git.nauminet.de/websites/gnaumann/compare/v1.3.2...v1.3.3) (2023-08-25)
 
 
