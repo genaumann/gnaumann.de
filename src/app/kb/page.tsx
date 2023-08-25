@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import KBIndexTree from '@/components/modules/kb/KBIndexTree'
 import KBHero from '@/components/modules/kb/KBHero'
 import {Metadata} from 'next'
