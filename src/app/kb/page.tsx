@@ -18,9 +18,6 @@ export const metadata: Metadata = dynamicMetadata(
 const KBIndex = () => {
   return (
     <>
-      <Head>
-        <title>Knowledgebase · GNaumann</title>
-      </Head>
       <KBHero />
       <KBIndexTree />
     </>
