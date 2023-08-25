@@ -4,10 +4,10 @@ WORKDIR /app
 
 RUN apk add --no-cache --update tzdata
 
-ENV NODE_ENV=production
-ENV NEXT_TELEMETRY_DISABLED=1
-ENV NEXT_URL=https://gnaumann.de
-ENV TZ=Europe/Berlin
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_URL https://gnaumann.de
+ENV TZ Europe/Berlin
 
 RUN addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs
@@ -20,6 +20,7 @@ USER nextjs
 
 EXPOSE 3000
 
-ENV PORT=3000
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
 
 CMD ["node", "server.js"]
