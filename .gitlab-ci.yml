@@ -89,12 +89,15 @@ container-build:
           artifacts: true
         - job: release
           artifacts: true
+      variables:
+        CONTAINER_TAG: latest
     - if: "'int' == $CI_COMMIT_BRANCH"
       needs:
         - job: next-build
           artifacts: true
       variables:
         VERSION: int-$CI_PIPELINE_ID
+        CONTAINER_TAG: int
   before_script:
     - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
   script:
@@ -104,7 +107,7 @@ container-build:
       --build-arg "NEXT_URL=${NEXT_URL}"
       --dockerfile "${CI_PROJECT_DIR}/Containerfile"
       --destination "${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}"
-      --destination "${CI_REGISTRY}/genaumann/container/gna-web:latest"
+      --destination "${CI_REGISTRY}/genaumann/container/gna-web:${CONTAINER_TAG}"
 
 salt-deploy:
   stage: deploy
