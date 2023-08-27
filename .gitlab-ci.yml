@@ -101,6 +101,7 @@ container-build:
     - if [ ! "$VERSION" ] ; then VERSION=$(cat VERSION) ; else VERSION=$VERSION ; fi
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
+      --build-arg "NEXT_URL=${NEXT_URL}"
       --dockerfile "${CI_PROJECT_DIR}/Containerfile"
       --destination "${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}"
       --destination "${CI_REGISTRY}/genaumann/container/gna-web:latest"
