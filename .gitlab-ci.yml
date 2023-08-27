@@ -11,10 +11,14 @@ workflow:
       when: never
     - if: '$CI_COMMIT_MESSAGE =~ /^chore\(release\):.*/'
       when: never
+    - if: "'int' == $CI_COMMIT_BRANCH"
+      variables:
+        NEXT_URL: https://int.gnaumann.de
     - when: always
 
 variables:
   CL_IMAGE: registry.gitlab.com/genaumann/container/commitlint:17.7.1
+  NEXT_URL: https://gnaumann.de
 
 include:
   # commitlint
@@ -105,7 +109,7 @@ salt-deploy:
   image: registry.gitlab.com/genaumann/salt-api:latest
   environment:
     name: $DEPLOY_ENV
-    url: $DEPLOY_URL
+    url: $NEXT_URL
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
       needs:
@@ -115,14 +119,12 @@ salt-deploy:
           artifacts: true
       variables:
         DEPLOY_ENV: production
-        DEPLOY_URL: https://gnaumann.de
     - if: "'int' == $CI_COMMIT_BRANCH"
       needs:
         - job: container-build
           artifacts: false
       variables:
         DEPLOY_ENV: integration
-        DEPLOY_URL: https://int.gnaumann.de
   script:
     - VERSION=$(cat VERSION)
     - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"gnaumann-web\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
