@@ -56,11 +56,12 @@ release:
 next-build:
   stage: build
   extends: .node-template
-  needs:
-    - job: release
-      artifacts: true
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
+      needs:
+        - job: release
+          artifacts: true
+    - if: "'int' == $CI_COMMIT_BRANCH"
   artifacts:
     when: on_success
     expire_in: 2h
@@ -78,15 +79,21 @@ container-build:
     entrypoint: ['']
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
-  needs:
-    - job: next-build
-      artifacts: true
-    - job: release
-      artifacts: true
+      needs:
+        - job: next-build
+          artifacts: true
+        - job: release
+          artifacts: true
+    - if: "'int' == $CI_COMMIT_BRANCH"
+      needs:
+        - job: next-build
+          artifacts: true
+      variables:
+        VERSION: int
   before_script:
     - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
   script:
-    - VERSION=$(cat VERSION)
+    - if [ ! "$VERSION" ] ; then VERSION=$(cat VERSION) ; else VERSION=$VERSION ; fi
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
       --dockerfile "${CI_PROJECT_DIR}/Containerfile"
@@ -96,13 +103,26 @@ container-build:
 salt-deploy:
   stage: deploy
   image: registry.gitlab.com/genaumann/salt-api:latest
-  needs:
-    - job: container-build
-      artifacts: false
-    - job: release
-      artifacts: true
+  environment:
+    name: $DEPLOY_ENV
+    url: $DEPLOY_URL
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      needs:
+        - job: container-build
+          artifacts: false
+        - job: release
+          artifacts: true
+      variables:
+        DEPLOY_ENV: production
+        DEPLOY_URL: https://gnaumann.de
+    - if: "'int' == $CI_COMMIT_BRANCH"
+      needs:
+        - job: container-build
+          artifacts: false
+      variables:
+        DEPLOY_ENV: integration
+        DEPLOY_URL: https://int.gnaumann.de
   script:
     - VERSION=$(cat VERSION)
     - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"gnaumann-web\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
