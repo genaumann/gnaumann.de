@@ -73,6 +73,7 @@ next-build:
       - .next
       - public
   script:
+    - echo "Building image for ${NEXT_URL}"
     - apk add git
     - npm run build
 
