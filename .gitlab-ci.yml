@@ -93,7 +93,7 @@ container-build:
         - job: next-build
           artifacts: true
       variables:
-        VERSION: int
+        VERSION: int-$CI_PIPELINE_ID
   before_script:
     - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
   script:
@@ -119,12 +119,15 @@ salt-deploy:
           artifacts: true
       variables:
         DEPLOY_ENV: production
+        CONTAINER_NAME: gnaumann-web
     - if: "'int' == $CI_COMMIT_BRANCH"
       needs:
         - job: container-build
           artifacts: false
       variables:
         DEPLOY_ENV: integration
+        CONTAINER_NAME: gnaumann-web-int
+        VERSION: int-$CI_PIPELINE_ID
   script:
-    - VERSION=$(cat VERSION)
-    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"gnaumann-web\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
+    - if [ ! "$VERSION" ] ; then VERSION=$(cat VERSION) ; else VERSION=$VERSION ; fi
+    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"${CONTAINER_NAME}\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
