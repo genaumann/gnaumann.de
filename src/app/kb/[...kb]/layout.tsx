@@ -17,7 +17,7 @@ const KBLayout = ({children}: KBLayoutProps) => {
           <SearchButton className="py-2" location="body" />
           <KBNav index={KBIndex} />
         </div>
-        <div className="grow">
+        <div className="grow overflow-hidden">
           <article className="prose">{children}</article>
           <div className="mt-12 text-slate-500">
             <KBMeta />
