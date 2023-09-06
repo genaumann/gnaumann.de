@@ -25,7 +25,8 @@ import {
   SiTypescript,
   SiGnubash,
   SiGit,
-  SiApple
+  SiApple,
+  SiYaml
 } from 'react-icons/si'
 import {IconBaseProps} from 'react-icons'
 
@@ -75,7 +76,8 @@ const Icon: React.FC<IconProps> = ({name, ...props}) => {
     ),
     siGnubash: <SiGnubash color="#4EAA25" {...(props as IconBaseProps)} />,
     siGit: <SiGit color="#F05032" {...(props as IconBaseProps)} />,
-    siApple: <SiApple color="#FFF" {...(props as IconBaseProps)} />
+    siApple: <SiApple color="#FFF" {...(props as IconBaseProps)} />,
+    siYaml: <SiYaml color="#CB171E" {...(props as IconBaseProps)} />
   }
 
   return iconMap[name] || <FontAwesomeIcon icon={faBlockQuestion} fixedWidth />
