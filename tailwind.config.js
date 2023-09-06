@@ -46,7 +46,8 @@ module.exports = {
               marginTop: '1rem'
             },
             h2: {
-              marginTop: '1.25em'
+              marginTop: '2em',
+              marginBottom: '0.6666666666666666em'
             },
             'code::before': {
               content: ''
