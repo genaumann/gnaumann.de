@@ -43,7 +43,9 @@ export const GridItem: FC<GridItemProps> = ({
         className={clsx('border relative border-secondary/60 rounded-md p-4', {
           'hover:ring hover:ring-primary': href
         })}>
-        {icon && <Icon className="mb-3" size={iconSize} name={icon}></Icon>}
+        {icon && (
+          <Icon className="mb-3 block" size={iconSize} name={icon}></Icon>
+        )}
         {title && <strong className="text-xl">{title}</strong>}
         {href && (
           <Link href={href}>
