@@ -57,7 +57,7 @@
     "@tailwindcss/typography": "^0.5.10",
     "@types/glob": "^8.1.0",
     "@types/uuid": "^9.0.3",
-    "hast-util-to-string": "^3.0.0",
+    "hast-util-to-string": "^2.0.0",
     "lowlight": "^3.0.0",
     "remark-custom-heading-id": "^1.0.1",
     "remark-emoji": "^4.0.0",

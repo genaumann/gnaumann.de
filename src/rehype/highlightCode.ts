@@ -2,7 +2,7 @@ import {Plugin} from 'unified'
 import {Root, ElementContent, Element} from 'hast'
 import {visit} from 'unist-util-visit'
 import {Node} from 'unist'
-import {lowlight} from 'lowlight'
+import {common, createLowlight} from 'lowlight'
 import {toString} from 'hast-util-to-string'
 
 type markMapType = {
@@ -114,11 +114,12 @@ const highlightLine: Plugin<void[], Root> = () => {
       const markedLines = markLines(node.children[0].value)
 
       const allChildren = markedLines.map(element => {
+        const lowlight = createLowlight(common)
         const res = lang
           ? lowlight.highlight(lang, toString(element).replace('\n', ''))
           : lowlight.highlightAuto(toString(element).replace('\n', ''))
         if ('children' in element && res.children.length > 0) {
-          element.children = res.children
+          element.children = res.children as ElementContent[]
           return element
         }
         if (
@@ -132,7 +133,7 @@ const highlightLine: Plugin<void[], Root> = () => {
         }
         return res.children
       })
-      node.children = allChildren.flat()
+      node.children = allChildren.flat() as Element[]
     })
   }
 }
