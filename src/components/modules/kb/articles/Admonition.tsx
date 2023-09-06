@@ -9,6 +9,7 @@ export interface AdmonitionProps {
   variant: 'info' | 'warning' | 'danger' | 'tip' | 'success' | 'question'
   children?: ReactNode
   expand?: boolean
+  show?: boolean
   disableIcon?: boolean
 }
 
@@ -29,7 +30,7 @@ const AdmonitionContext = React.createContext<AdmonitionContext>({
 const Admonition: React.FC<AdmonitionProps> & {
   Title: React.FC<ChildProps>
   Content: React.FC<ChildProps>
-} = ({variant, children, disableIcon, expand}) => {
+} = ({variant, children, disableIcon, expand = true}) => {
   const [show, setShow] = useState(expand)
   const [hasContent, setHasContent] = useState(false)
 
