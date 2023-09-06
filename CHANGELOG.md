@@ -1,5 +1,38 @@
 # Changelog
 
+## [1.4.0](https://git.nauminet.de/websites/gnaumann/compare/v1.3.4...v1.4.0) (2023-09-06)
+
+
+### 🐛 Bugfix 🐛
+
+* **component:** admonition expand ([367eaf6](https://git.nauminet.de/websites/gnaumann/commit/367eaf6a33ca141705475d6cfa64f0302e93bb52)), closes [#26](https://git.nauminet.de/websites/gnaumann/issues/26)
+* **component:** admonition type error ([66d5fd0](https://git.nauminet.de/websites/gnaumann/commit/66d5fd0c52730f74f51c3b323f4dde6af3db960a))
+* **component:** icon in grid as block ([83931c3](https://git.nauminet.de/websites/gnaumann/commit/83931c3c256331840c8266f15a43e2e3e049f64a))
+* **layout:** kb layout hidden overflow ([5511f70](https://git.nauminet.de/websites/gnaumann/commit/5511f709ab3f8d0b093835ce53bdd40e4a7739da))
+* **rehype:** update to new lowlight ([d3dd503](https://git.nauminet.de/websites/gnaumann/commit/d3dd50325702dcaef59964c7d70ff4ed6f518a49))
+* **seo:** ignore imprint in sitemap ([630f299](https://git.nauminet.de/websites/gnaumann/commit/630f299685490af4a0c67a6ef387f0531970005a))
+
+
+### 💿 Continuous Integration 💿
+
+* add int deployment environment ([56ef832](https://git.nauminet.de/websites/gnaumann/commit/56ef83288876544a4b2ba772e581e81cb55989a1))
+* debug NEXT_URL ([68fdd76](https://git.nauminet.de/websites/gnaumann/commit/68fdd763eef5fc8ead774c449d7cd21b7ca2496d))
+* generate dynamic int docker tag ([840ab45](https://git.nauminet.de/websites/gnaumann/commit/840ab45f813cfe88cd0c3d91e3f585c0d0fec6b9))
+* set NEXT_URL conditionally ([b185d0b](https://git.nauminet.de/websites/gnaumann/commit/b185d0bc6fc737d8cfdfdb7a903581e2daabac28))
+* specify container tag latest or int ([0309b05](https://git.nauminet.de/websites/gnaumann/commit/0309b05c4566dae93043423edf902e9de4fb101e))
+* update node to 20 ([c3a5db7](https://git.nauminet.de/websites/gnaumann/commit/c3a5db742c4a1696741c611e7ed14497518ca306))
+
+
+### 📖 Documentation 📖
+
+* **salt:** add pillar encryption ([1b9cf39](https://git.nauminet.de/websites/gnaumann/commit/1b9cf3927b902e6af9161c464d7e0b9d2f6b1612))
+
+
+### 🏗️ Build 🏗️
+
+* add NEXT_URL as arg ([f0d0050](https://git.nauminet.de/websites/gnaumann/commit/f0d005046f0e597f58e650a3c3fe0f539b08a4bf))
+* update container to node 20 ([5a1bbc2](https://git.nauminet.de/websites/gnaumann/commit/5a1bbc2d149e5c02b3a4533906b3054ba6d6f439))
+
 ## [1.3.4](https://git.nauminet.de/websites/gnaumann/compare/v1.3.3...v1.3.4) (2023-08-25)
 
 
