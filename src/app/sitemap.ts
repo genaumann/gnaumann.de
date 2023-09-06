@@ -15,7 +15,10 @@ const sitemap = (): MetadataRoute.Sitemap => {
   const findPages = (startPath: string): SiteMapObject[] => {
     const pattern = '**/page.tsx'
 
-    let files = glob.sync(pattern, {cwd: startPath})
+    let files = glob.sync(pattern, {
+      cwd: startPath,
+      ignore: ['**/imprint/page.tsx']
+    })
 
     files = files.filter(file => {
       const relativePath = path.relative(startPath, file)
