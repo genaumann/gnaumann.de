@@ -13,7 +13,10 @@ import {
   faChevronDown,
   faChevronRight,
   faFile,
-  faCopy
+  faCopy,
+  faKey,
+  faBook,
+  faCompactDisc
 } from '@fortawesome/pro-duotone-svg-icons'
 import React from 'react'
 import {
@@ -62,6 +65,9 @@ const Icon: React.FC<IconProps> = ({name, ...props}) => {
     faChevronRight: <FontAwesomeIcon icon={faChevronRight} />,
     faFile: <FontAwesomeIcon {...(props as FaIconProps)} icon={faFile} />,
     faCopy: <FontAwesomeIcon {...(props as FaIconProps)} icon={faCopy} />,
+    faKey: <FontAwesomeIcon {...(props as FaIconProps)} icon={faKey} />,
+    faBook: <FontAwesomeIcon {...(props as FaIconProps)} icon={faBook} />,
+    faCd: <FontAwesomeIcon {...(props as FaIconProps)} icon={faCompactDisc} />,
     siAnsible: <SiAnsible color="#EE0000" {...(props as IconBaseProps)} />,
     siJavascript: (
       <SiJavascript color="#F7DF1E" {...(props as IconBaseProps)} />
