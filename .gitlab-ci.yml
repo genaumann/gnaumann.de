@@ -27,7 +27,7 @@ include:
     file: '/templates/.gitlab-ci-commitlint.yml'
 
 .node-template:
-  image: node:18-alpine3.18
+  image: node:20-alpine3.18
   cache:
     key: $CI_COMMIT_REF_SLUG
     paths:
