@@ -1,4 +1,4 @@
-FROM node:18-alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
@@ -6,7 +6,10 @@ RUN apk add --no-cache --update tzdata
 
 ENV NODE_ENV production
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV NEXT_URL https://gnaumann.de
+
+ARG NEXT_URL
+
+ENV NEXT_URL ${NEXT_URL}
 ENV TZ Europe/Berlin
 
 RUN addgroup --system --gid 1001 nodejs \

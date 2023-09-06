@@ -13,7 +13,10 @@ import {
   faChevronDown,
   faChevronRight,
   faFile,
-  faCopy
+  faCopy,
+  faKey,
+  faBook,
+  faCompactDisc
 } from '@fortawesome/pro-duotone-svg-icons'
 import React from 'react'
 import {
@@ -25,7 +28,8 @@ import {
   SiTypescript,
   SiGnubash,
   SiGit,
-  SiApple
+  SiApple,
+  SiYaml
 } from 'react-icons/si'
 import {IconBaseProps} from 'react-icons'
 
@@ -61,6 +65,9 @@ const Icon: React.FC<IconProps> = ({name, ...props}) => {
     faChevronRight: <FontAwesomeIcon icon={faChevronRight} />,
     faFile: <FontAwesomeIcon {...(props as FaIconProps)} icon={faFile} />,
     faCopy: <FontAwesomeIcon {...(props as FaIconProps)} icon={faCopy} />,
+    faKey: <FontAwesomeIcon {...(props as FaIconProps)} icon={faKey} />,
+    faBook: <FontAwesomeIcon {...(props as FaIconProps)} icon={faBook} />,
+    faCd: <FontAwesomeIcon {...(props as FaIconProps)} icon={faCompactDisc} />,
     siAnsible: <SiAnsible color="#EE0000" {...(props as IconBaseProps)} />,
     siJavascript: (
       <SiJavascript color="#F7DF1E" {...(props as IconBaseProps)} />
@@ -75,7 +82,8 @@ const Icon: React.FC<IconProps> = ({name, ...props}) => {
     ),
     siGnubash: <SiGnubash color="#4EAA25" {...(props as IconBaseProps)} />,
     siGit: <SiGit color="#F05032" {...(props as IconBaseProps)} />,
-    siApple: <SiApple color="#FFF" {...(props as IconBaseProps)} />
+    siApple: <SiApple color="#FFF" {...(props as IconBaseProps)} />,
+    siYaml: <SiYaml color="#CB171E" {...(props as IconBaseProps)} />
   }
 
   return iconMap[name] || <FontAwesomeIcon icon={faBlockQuestion} fixedWidth />

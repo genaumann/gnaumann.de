@@ -11,10 +11,14 @@ workflow:
       when: never
     - if: '$CI_COMMIT_MESSAGE =~ /^chore\(release\):.*/'
       when: never
+    - if: "'int' == $CI_COMMIT_BRANCH"
+      variables:
+        NEXT_URL: https://int.gnaumann.de
     - when: always
 
 variables:
   CL_IMAGE: registry.gitlab.com/genaumann/container/commitlint:17.7.1
+  NEXT_URL: https://gnaumann.de
 
 include:
   # commitlint
@@ -23,7 +27,7 @@ include:
     file: '/templates/.gitlab-ci-commitlint.yml'
 
 .node-template:
-  image: node:18-alpine3.18
+  image: node:20-alpine3.18
   cache:
     key: $CI_COMMIT_REF_SLUG
     paths:
@@ -56,11 +60,12 @@ release:
 next-build:
   stage: build
   extends: .node-template
-  needs:
-    - job: release
-      artifacts: true
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
+      needs:
+        - job: release
+          artifacts: true
+    - if: "'int' == $CI_COMMIT_BRANCH"
   artifacts:
     when: on_success
     expire_in: 2h
@@ -68,6 +73,7 @@ next-build:
       - .next
       - public
   script:
+    - echo "Building image for ${NEXT_URL}"
     - apk add git
     - npm run build
 
@@ -78,31 +84,55 @@ container-build:
     entrypoint: ['']
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
-  needs:
-    - job: next-build
-      artifacts: true
-    - job: release
-      artifacts: true
+      needs:
+        - job: next-build
+          artifacts: true
+        - job: release
+          artifacts: true
+      variables:
+        CONTAINER_TAG: latest
+    - if: "'int' == $CI_COMMIT_BRANCH"
+      needs:
+        - job: next-build
+          artifacts: true
+      variables:
+        VERSION: int-$CI_PIPELINE_ID
+        CONTAINER_TAG: int
   before_script:
     - echo "{\"auths\":{\"${CI_REGISTRY}\":{\"auth\":\"$(printf "%s:%s" "${CI_REGISTRY_USER}" "${CI_REGISTRY_PASSWORD}" | base64 | tr -d '\n')\"}}}" > /kaniko/.docker/config.json
   script:
-    - VERSION=$(cat VERSION)
+    - if [ ! "$VERSION" ] ; then VERSION=$(cat VERSION) ; else VERSION=$VERSION ; fi
     - /kaniko/executor
       --context "${CI_PROJECT_DIR}"
+      --build-arg "NEXT_URL=${NEXT_URL}"
       --dockerfile "${CI_PROJECT_DIR}/Containerfile"
       --destination "${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}"
-      --destination "${CI_REGISTRY}/genaumann/container/gna-web:latest"
+      --destination "${CI_REGISTRY}/genaumann/container/gna-web:${CONTAINER_TAG}"
 
 salt-deploy:
   stage: deploy
   image: registry.gitlab.com/genaumann/salt-api:latest
-  needs:
-    - job: container-build
-      artifacts: false
-    - job: release
-      artifacts: true
+  environment:
+    name: $DEPLOY_ENV
+    url: $NEXT_URL
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      needs:
+        - job: container-build
+          artifacts: false
+        - job: release
+          artifacts: true
+      variables:
+        DEPLOY_ENV: production
+        CONTAINER_NAME: gnaumann-web
+    - if: "'int' == $CI_COMMIT_BRANCH"
+      needs:
+        - job: container-build
+          artifacts: false
+      variables:
+        DEPLOY_ENV: integration
+        CONTAINER_NAME: gnaumann-web-int
+        VERSION: int-$CI_PIPELINE_ID
   script:
-    - VERSION=$(cat VERSION)
-    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"gnaumann-web\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
+    - if [ ! "$VERSION" ] ; then VERSION=$(cat VERSION) ; else VERSION=$VERSION ; fi
+    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"${CONTAINER_NAME}\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
