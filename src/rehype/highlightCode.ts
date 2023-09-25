@@ -4,6 +4,7 @@ import {visit} from 'unist-util-visit'
 import {Node} from 'unist'
 import {common, createLowlight} from 'lowlight'
 import {toString} from 'hast-util-to-string'
+import {Nodes} from 'hast-util-to-string/lib'
 
 type markMapType = {
   [index: string]: {marker: string; class: string}
@@ -116,8 +117,11 @@ const highlightLine: Plugin<void[], Root> = () => {
       const allChildren = markedLines.map(element => {
         const lowlight = createLowlight(common)
         const res = lang
-          ? lowlight.highlight(lang, toString(element).replace('\n', ''))
-          : lowlight.highlightAuto(toString(element).replace('\n', ''))
+          ? lowlight.highlight(
+              lang,
+              toString(element as Nodes).replace('\n', '')
+            )
+          : lowlight.highlightAuto(toString(element as Nodes).replace('\n', ''))
         if ('children' in element && res.children.length > 0) {
           element.children = res.children as ElementContent[]
           return element
