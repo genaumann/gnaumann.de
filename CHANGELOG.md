@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1](https://git.nauminet.de/websites/gnaumann/compare/v1.4.0...v1.4.1) (2023-09-25)
+
+
+### 🐛 Bugfix 🐛
+
+* **component:** admonition rendering ([a64076d](https://git.nauminet.de/websites/gnaumann/commit/a64076d1a689174f458c61194718730bbd254ab6))
+* **rehype:** lint errors after hast upgrade ([0ddc4b2](https://git.nauminet.de/websites/gnaumann/commit/0ddc4b25d699881572f6004863320cbd988977c6))
+
 ## [1.4.0](https://git.nauminet.de/websites/gnaumann/compare/v1.3.4...v1.4.0) (2023-09-06)
 
 
