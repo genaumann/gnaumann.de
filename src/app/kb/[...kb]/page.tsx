@@ -1,7 +1,4 @@
-import Admonition, {
-  Title as AdmonitionTitle,
-  Content as AdmonitionContent
-} from '@/components/modules/kb/articles/Admonition'
+import Admonition from '@/components/modules/kb/articles/Admonition'
 import CodeBlockPlain from '@/components/modules/kb/articles/CodeBlockPlain'
 import Icon from '@/components/modules/kb/articles/Icons'
 import {Tab} from '@/components/modules/kb/articles/Tabs'
@@ -92,6 +89,17 @@ const KBArticle = async ({params}: KBArticleProps) => {
     () => import('@/components/modules/kb/articles/TestENV'),
     {ssr: false}
   )
+  const AdmonitionTitle = dynamic(async () => {
+    const {Title} = await import('@/components/modules/kb/articles/Admonition')
+    return {default: Title}
+  })
+
+  const AdmonitionContent = dynamic(async () => {
+    const {Content} = await import(
+      '@/components/modules/kb/articles/Admonition'
+    )
+    return {default: Content}
+  })
 
   const components = {
     Admonition,
