@@ -22,7 +22,7 @@ const iconMap = (lang: string) => {
   if (lang === 'bash') {
     return 'siGnubash'
   }
-  if (lang === 'yaml' || 'yml') {
+  if (lang === 'yaml' || lang === 'yml') {
     return 'siYaml'
   }
   return 'faFile'
