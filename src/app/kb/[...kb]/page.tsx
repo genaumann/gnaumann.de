@@ -1,14 +1,14 @@
 import Admonition from '@/components/modules/kb/articles/Admonition'
 import CodeBlockPlain from '@/components/modules/kb/articles/CodeBlockPlain'
 import Icon from '@/components/modules/kb/articles/Icons'
-import {Tab} from '@/components/modules/kb/articles/Tabs'
+import Tabs from '@/components/modules/kb/articles/Tabs'
+import Tab from '@/components/modules/kb/articles/Tab'
 import {findArticleByHref} from '@/utils'
 import {getPostBySlug, mdxOptions} from '@/utils/mdx'
 import {Metadata} from 'next'
 import {MDXRemote} from 'next-mdx-remote/rsc'
 import dynamic from 'next/dynamic'
 import {notFound} from 'next/navigation'
-import {Suspense} from 'react'
 import KBIndex from '@/KBIndex.json'
 import {Grid, GridItem} from '@/components/modules/kb/articles/Grid'
 import {TestENV} from '@/components/modules/kb/articles/TestENV'
@@ -78,9 +78,6 @@ const KBArticle = async ({params}: KBArticleProps) => {
     notFound()
   }
 
-  const Tabs = dynamic(() => import('@/components/modules/kb/articles/Tabs'), {
-    ssr: false
-  })
   const CodeBlockFile = dynamic(
     () => import('@/components/modules/kb/articles/CodeBlockFile'),
     {ssr: false}
@@ -105,11 +102,7 @@ const KBArticle = async ({params}: KBArticleProps) => {
     Admonition,
     AdmonitionTitle,
     AdmonitionContent,
-    Tabs: (props: any) => (
-      <Suspense>
-        <Tabs {...props}>{props.children}</Tabs>
-      </Suspense>
-    ),
+    Tabs,
     Tab,
     CodeBlockFile,
     CodeBlockPlain,
