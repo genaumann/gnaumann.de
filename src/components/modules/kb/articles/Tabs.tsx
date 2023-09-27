@@ -7,21 +7,14 @@ import {usePathname, useRouter, useSearchParams} from 'next/navigation'
 import React, {useCallback, useEffect, useState} from 'react'
 import {useDispatch} from 'react-redux'
 import {v4 as uuidv4} from 'uuid'
+import {TabProps} from './Tab'
 
 export interface TabsProps {
   activeTab?: number
   children: React.ReactElement<TabProps>[]
 }
 
-export interface TabProps {
-  title: string
-  children: React.ReactNode
-}
-
-const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
-  children,
-  activeTab = 0
-}) => {
+const Tabs: React.FC<TabsProps> = ({children, activeTab = 0}) => {
   const router = useRouter()
   const dispatch = useDispatch<AppDispatch>()
   const searchParams = useSearchParams()!
@@ -125,13 +118,5 @@ const Tabs: React.FC<TabsProps> & {Tab: React.FC<TabProps>} = ({
     </>
   )
 }
-
-export const Tab = ({children}: TabProps) => {
-  return <div className="mt-3">{children}</div>
-}
-
-Tabs.Tab = Tab
-
-Tabs.Tab.displayName = 'Tabs.Tab'
 
 export default Tabs
