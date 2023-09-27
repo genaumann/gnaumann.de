@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.2](https://git.nauminet.de/websites/gnaumann/compare/v1.4.1...v1.4.2) (2023-09-27)
+
+
+### 🐛 Bugfix 🐛
+
+* **component:** codeblock file icon ([0cd10ff](https://git.nauminet.de/websites/gnaumann/commit/0cd10ff7581b3d8f7600ee57bc90aee392aa56e9))
+* **component:** tabs client server rendering ([3eee407](https://git.nauminet.de/websites/gnaumann/commit/3eee407104488c5460f47210c0b969ccaf826b6f))
+
 ## [1.4.1](https://git.nauminet.de/websites/gnaumann/compare/v1.4.0...v1.4.1) (2023-09-25)
 
 
