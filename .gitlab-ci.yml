@@ -22,7 +22,7 @@ variables:
 
 include:
   # commitlint
-  - project: 'ctbc/commitlint'
+  - project: 'genaumann/commitlint'
     ref: 'v1.3.0'
     file: '/templates/.gitlab-ci-commitlint.yml'
 
@@ -60,6 +60,8 @@ release:
 next-build:
   stage: build
   extends: .node-template
+  tags:
+    - saas-macos-medium-m1
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
       needs:
@@ -82,6 +84,8 @@ container-build:
   image:
     name: gcr.io/kaniko-project/executor:v1.13.0-debug
     entrypoint: ['']
+  tags:
+    - saas-macos-medium-m1
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
       needs:
@@ -106,12 +110,14 @@ container-build:
       --context "${CI_PROJECT_DIR}"
       --build-arg "NEXT_URL=${NEXT_URL}"
       --dockerfile "${CI_PROJECT_DIR}/Containerfile"
-      --destination "${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}"
-      --destination "${CI_REGISTRY}/genaumann/container/gna-web:${CONTAINER_TAG}"
+      --destination "${CI_REGISTRY}/genaumann/gnaumann.de/gna-web:${VERSION}"
+      --destination "${CI_REGISTRY}/genaumann/gnaumann.de/gna-web:${CONTAINER_TAG}"
 
 salt-deploy:
   stage: deploy
   image: registry.gitlab.com/genaumann/salt-api:latest
+  tags:
+    - gna
   environment:
     name: $DEPLOY_ENV
     url: $NEXT_URL
@@ -133,6 +139,7 @@ salt-deploy:
         DEPLOY_ENV: integration
         CONTAINER_NAME: gnaumann-web-int
         VERSION: int-$CI_PIPELINE_ID
+      when: never
   script:
     - if [ ! "$VERSION" ] ; then VERSION=$(cat VERSION) ; else VERSION=$VERSION ; fi
-    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"${CONTAINER_NAME}\":{\"image\":\"${CI_REGISTRY}/genaumann/container/gna-web:${VERSION}\"}}}}"
+    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"${CONTAINER_NAME}\":{\"image\":\"${CI_REGISTRY}/genaumann/gnaumann.de/gna-web:${VERSION}\"}}}}"
