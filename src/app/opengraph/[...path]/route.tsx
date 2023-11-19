@@ -1,7 +1,8 @@
 import Icon from '@/components/modules/kb/articles/Icons'
 import {RequestContext} from '@/types'
 import {findArticleByHref} from '@/utils'
-import {ImageResponse, NextRequest, NextResponse} from 'next/server'
+import {NextRequest, NextResponse} from 'next/server'
+import {ImageResponse} from 'next/og'
 import KBIndex from '@/KBIndex.json'
 
 export const runtime = 'edge'
