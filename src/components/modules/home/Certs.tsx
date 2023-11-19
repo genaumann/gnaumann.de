@@ -11,6 +11,13 @@ import SimpleIcon from '@/components/icons/SimpleIcon'
 
 const certs = [
   {
+    name: 'ITIL® Foundation Certificate in IT Service Management',
+    issuer: 'PeopleCert',
+    issuedAt: '2023-11-16',
+    validUntil: '2026-11-16',
+    link: 'https://media.licdn.com/dms/image/D4E2DAQFmagSGx06QQA/profile-treasury-document-images_1280/1/1700224345657?e=1701302400&v=beta&t=bHa5CXgOdB3Asdp9lDfXkG2PsTJSP1SqlX4OMKbRAco'
+  },
+  {
     name: 'Professional Scrum Master™ I (PSM I)',
     issuer: 'Scrum.org',
     issuedAt: '2023-06-20',
