@@ -17,7 +17,7 @@ workflow:
     - when: always
 
 variables:
-  CL_IMAGE: registry.gitlab.com/genaumann/container/commitlint:17.7.1
+  CL_IMAGE: registry.gitlab.com/genaumann/containerpub/commitlint:17.7.1
   NEXT_URL: https://gnaumann.de
 
 include:
@@ -46,7 +46,7 @@ next-lint:
 
 release:
   stage: release
-  image: registry.gitlab.com/genaumann/container/semantic-release:21.0.7
+  image: registry.gitlab.com/genaumann/containerpub/semantic-release:21.0.7
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
   artifacts:
