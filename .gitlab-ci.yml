@@ -17,14 +17,7 @@ workflow:
     - when: always
 
 variables:
-  CL_IMAGE: registry.gitlab.com/genaumann/containerpub/commitlint:17.7.1
   NEXT_URL: https://gnaumann.de
-
-include:
-  # commitlint
-  - project: 'genaumann/commitlint'
-    ref: 'v1.3.0'
-    file: '/templates/.gitlab-ci-commitlint.yml'
 
 .node-template:
   image: node:20-alpine3.18
@@ -46,7 +39,7 @@ next-lint:
 
 release:
   stage: release
-  image: registry.gitlab.com/genaumann/containerpub/semantic-release:21.0.7
+  image: quay.io/genaumann/pub/semantic-release:22.0.8
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
   artifacts:
@@ -61,7 +54,7 @@ next-build:
   stage: build
   extends: .node-template
   tags:
-    - saas-macos-medium-m1
+    - gna
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
       needs:
@@ -69,7 +62,6 @@ next-build:
           artifacts: true
     - if: "'int' == $CI_COMMIT_BRANCH"
   artifacts:
-    when: on_success
     expire_in: 2h
     paths:
       - .next
@@ -85,7 +77,7 @@ container-build:
     name: gcr.io/kaniko-project/executor:v1.13.0-debug
     entrypoint: ['']
   tags:
-    - saas-macos-medium-m1
+    - gna
   rules:
     - if: $CI_DEFAULT_BRANCH == $CI_COMMIT_BRANCH
       needs:
@@ -110,12 +102,12 @@ container-build:
       --context "${CI_PROJECT_DIR}"
       --build-arg "NEXT_URL=${NEXT_URL}"
       --dockerfile "${CI_PROJECT_DIR}/Containerfile"
-      --destination "${CI_REGISTRY}/genaumann/gnaumann.de/gna-web:${VERSION}"
-      --destination "${CI_REGISTRY}/genaumann/gnaumann.de/gna-web:${CONTAINER_TAG}"
+      --destination "${CI_REGISTRY}/genaumann/gnaumann.de:${VERSION}"
+      --destination "${CI_REGISTRY}/genaumann/gnaumann.de:${CONTAINER_TAG}"
 
 salt-deploy:
   stage: deploy
-  image: registry.gitlab.com/genaumann/salt-api:latest
+  image: quay.io/genaumann/pub/saltleapi:1.1.4
   tags:
     - gna
   environment:
@@ -130,16 +122,16 @@ salt-deploy:
           artifacts: true
       variables:
         DEPLOY_ENV: production
-        CONTAINER_NAME: gnaumann-web
+        CONTAINER_NAME: gnaumann
+      when: manual
     - if: "'int' == $CI_COMMIT_BRANCH"
       needs:
         - job: container-build
           artifacts: false
       variables:
         DEPLOY_ENV: integration
-        CONTAINER_NAME: gnaumann-web-int
+        CONTAINER_NAME: gnaumann-int
         VERSION: int-$CI_PIPELINE_ID
-      when: never
   script:
     - if [ ! "$VERSION" ] ; then VERSION=$(cat VERSION) ; else VERSION=$VERSION ; fi
-    - saltleapi -t grain 'role:docker-gnaumann-web' state.apply -a api.gnaumann.web -k pillar="{\"docker\":{\"containers\":{\"${CONTAINER_NAME}\":{\"image\":\"${CI_REGISTRY}/genaumann/gnaumann.de/gna-web:${VERSION}\"}}}}"
+    - saltleapi hook.nauminet.de state.apply -a api.gnaumann-web -k pillar="{\"docker\":{\"containers\":{\"${CONTAINER_NAME}\":{\"image\":\"${CI_REGISTRY}/genaumann/gnaumann.de:${VERSION}\"}}}}"
