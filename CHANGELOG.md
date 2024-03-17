@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.5.0](https://gitlab.com/genaumann/gnaumann.de/compare/v1.4.2...v1.5.0) (2024-03-17)
+
+
+### 🐛 Bugfix 🐛
+
+* moved image response function ([1ac4e51](https://gitlab.com/genaumann/gnaumann.de/commit/1ac4e51d2870b45c9a61641cdcf8ae673c98ce91))
+
+
+### 💿 Continuous Integration 💿
+
+* adapt pipeline to server infrastructure ([2849528](https://gitlab.com/genaumann/gnaumann.de/commit/2849528e5df96c47208dfd6b10b9c111f960729d))
+* prepare gitlab.com pipeline ([aaabb72](https://gitlab.com/genaumann/gnaumann.de/commit/aaabb723fa9a81055cbda2082a3e80fa49787226))
+* use containerpub path ([03c9bc1](https://gitlab.com/genaumann/gnaumann.de/commit/03c9bc18d8b03b606645890daf7de9f1911d8e2b))
+
 ## [1.4.2](https://git.nauminet.de/websites/gnaumann/compare/v1.4.1...v1.4.2) (2023-09-27)
 
 
