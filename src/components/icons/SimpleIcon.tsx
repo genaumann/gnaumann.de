@@ -5,6 +5,7 @@ import {
   SiDebian,
   SiDocker,
   SiGit,
+  SiGithub,
   SiGitlab,
   SiGnubash,
   SiIcinga,
@@ -17,6 +18,7 @@ import {
   SiRedhat,
   SiSaltproject,
   SiTerraform,
+  SiTypescript,
   SiVault,
   SiWindows
 } from 'react-icons/si'
@@ -52,7 +54,9 @@ const SimpleIcon: React.FunctionComponent<SimpleIconProps> = ({
     python: <SiPython title="Python" color="#3776AB" {...props} />,
     mongodb: <SiMongodb title="MongoDB" color="#47A248" {...props} />,
     redhat: <SiRedhat title="Red Hat" color="#EE0000" {...props} />,
-    credly: <SiCredly title="Credly" color="#FF6B00" {...props} />
+    credly: <SiCredly title="Credly" color="#FF6B00" {...props} />,
+    typescript: <SiTypescript title="Typescript" color="#3178C6" {...props} />,
+    github: <SiGithub title="GitHub" color="#fffff" {...props} />
   }
   return <>{iconMapping[name]}</>
 }

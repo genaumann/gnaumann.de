@@ -6,6 +6,15 @@ import Badge from '@/components/Badge'
 
 const positions = [
   {
+    id: 7,
+    job: 'DevOps Engineer',
+    type: 'Teilzeit',
+    company: 'leasyro GmbH',
+    department: 'DevOps',
+    from: '2023-04-01',
+    icons: ['typescript', 'react', 'github']
+  },
+  {
     id: 6,
     job: 'System Engineer',
     type: 'Vollzeit',
@@ -21,6 +30,7 @@ const positions = [
     company: 'Deutscher Diabetikerbund e.V.',
     department: 'IT',
     from: '2023-02-01',
+    to: '2023-12-31',
     icons: ['javascript', 'react']
   },
   {
