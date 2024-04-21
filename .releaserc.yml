@@ -11,7 +11,7 @@ plugins:
         - breaking: true
           release: major
         - type: docs
-          release: patch
+          release: false
         - type: feat
           release: minor
         - type: fix
@@ -27,9 +27,9 @@ plugins:
         - type: test
           release: patch
         - type: ci
-          release: minor
+          release: false
         - type: build
-          release: patch
+          release: false
 
   # notes generator
   - - '@semantic-release/release-notes-generator'
