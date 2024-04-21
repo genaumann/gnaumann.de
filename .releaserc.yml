@@ -91,5 +91,5 @@ plugins:
         - package.json
         - package-lock.json
 
-  # gitlab
-  - '@semantic-release/gitlab'
+  # github
+  - '@semantic-release/github'
