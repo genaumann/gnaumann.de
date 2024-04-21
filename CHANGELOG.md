@@ -1,5 +1,27 @@
 # Changelog
 
+## [1.5.1](https://github.com/genaumann/gnaumann.de/compare/v1.5.0...v1.5.1) (2024-04-21)
+
+
+### 🐛 Bugfix 🐛
+
+* og url on kb articles ([9f27b32](https://github.com/genaumann/gnaumann.de/commit/9f27b3291b8abea3c56d29dbdd76110b7ad66c81))
+
+
+### 💿 Continuous Integration 💿
+
+* **github:** add release and deploy jobs ([2ed7908](https://github.com/genaumann/gnaumann.de/commit/2ed7908a5ebc5351f68afe258ad8a35b8cb58ed6))
+* **github:** vercel build in ci ([a7c5636](https://github.com/genaumann/gnaumann.de/commit/a7c56362bbc69710ad27d227c00676ed9e410192))
+* **release:** edit release rules ([d17ca1e](https://github.com/genaumann/gnaumann.de/commit/d17ca1e48e322abf8f6d61f89a8e12cc2ab617e8))
+* **release:** use github plugin ([dbb356f](https://github.com/genaumann/gnaumann.de/commit/dbb356fde90c47002274c75175072f0a92787833))
+* remove gitlab ci ([2210589](https://github.com/genaumann/gnaumann.de/commit/22105893b5d7e4798fc5289e0cdc50bf24635679))
+* remove manual deployment ([3b64365](https://github.com/genaumann/gnaumann.de/commit/3b6436558296a6e92713ab581e278458a89e23d6))
+
+
+### 🏗️ Build 🏗️
+
+* remove Containerfile ([12c037b](https://github.com/genaumann/gnaumann.de/commit/12c037bf72262c70881f3407988d406dd5bfa5e9))
+
 ## [1.5.0](https://gitlab.com/genaumann/gnaumann.de/compare/v1.4.2...v1.5.0) (2024-03-17)
 
 
