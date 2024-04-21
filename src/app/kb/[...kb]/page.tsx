@@ -12,6 +12,7 @@ import {notFound} from 'next/navigation'
 import KBIndex from '@/KBIndex.json'
 import {Grid, GridItem} from '@/components/modules/kb/articles/Grid'
 import {TestENV} from '@/components/modules/kb/articles/TestENV'
+import {basePath} from '@/config'
 
 interface KBArticleProps {
   params: {
@@ -33,7 +34,7 @@ export const generateMetadata = async ({
     openGraph: {
       title,
       description,
-      url: `/kb/${params.kb.join('/')}`,
+      url: `${basePath}/kb/${params.kb.join('/')}`,
       type: 'article',
       authors: article?.author,
       modifiedTime: article
@@ -49,7 +50,7 @@ export const generateMetadata = async ({
           type: 'image/png',
           width: 1200,
           height: 630,
-          url: `/opengraph/${params.kb.join('/')}?type=kb`
+          url: `${basePath}/opengraph/${params.kb.join('/')}?type=kb`
         }
       ]
     },
@@ -64,7 +65,7 @@ export const generateMetadata = async ({
           type: 'image/png',
           width: 1200,
           height: 630,
-          url: `/opengraph/${params.kb.join('/')}?type=kb`
+          url: `${basePath}/opengraph/${params.kb.join('/')}?type=kb`
         }
       ]
     }
