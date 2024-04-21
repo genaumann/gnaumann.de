@@ -11,6 +11,14 @@ import SimpleIcon from '@/components/icons/SimpleIcon'
 
 const certs = [
   {
+    name: 'Red Hat® Certified Specialist in Developing Automation with Ansible Automation Platform',
+    issuer: 'Red Hat',
+    issuedAt: '2024-02-13',
+    validUntil: '2027-02-13',
+    link: 'https://www.credly.com/badges/402af3ea-19c6-422f-86a6-3dbc7446bddc',
+    icon: 'redhat'
+  },
+  {
     name: 'ITIL® Foundation Certificate in IT Service Management',
     issuer: 'PeopleCert',
     issuedAt: '2023-11-16',
@@ -27,7 +35,7 @@ const certs = [
     name: 'Red Hat® Certified System Administrator (RHCSA®)',
     issuer: 'Red Hat',
     issuedAt: '2023-06-08',
-    validUntil: '2026-06-07',
+    validUntil: '2027-02-13',
     link: 'https://www.credly.com/badges/f2d2d2a5-fa70-473f-840b-9eccfb85fa04',
     icon: 'redhat'
   }
