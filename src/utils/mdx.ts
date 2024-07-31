@@ -28,7 +28,7 @@ export const getPostBySlug = async ({kb}: getPostBySlugProps) => {
 
     const {frontmatter} = await compileMDX({
       source: fileContent,
-      options: {parseFrontmatter: true, mdxOptions}
+      options: {parseFrontmatter: true, ...mdxOptions}
     })
 
     return {meta: {...frontmatter}, fileContent}
