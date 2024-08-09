@@ -116,7 +116,6 @@ const KBArticle = async ({params}: KBArticleProps) => {
   return (
     <MDXRemote
       source={fileContent}
-      // @ts-ignore
       components={{...components}}
       options={{mdxOptions}}
     />
