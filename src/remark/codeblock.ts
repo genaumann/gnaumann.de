@@ -28,7 +28,7 @@ const codeblock: Transformer<Root> = ast => {
   visit(
     ast,
     'code',
-    (node: Code, index: number | null, parent: Parent | null) => {
+    (node: Code, index: number | undefined, parent: Parent | undefined) => {
       parent!.children[index!] = {
         type: 'mdxJsxFlowElement',
         name: node.lang ? 'CodeBlockFile' : 'CodeBlockPlain',
