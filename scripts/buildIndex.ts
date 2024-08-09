@@ -17,7 +17,7 @@ interface Sortable {
 }
 
 const extractHeadings = (content: string): KBHeadings[] => {
-  const headingRegex = /^(\#+) (.+?) (?:\{#(.+?)\})?$/gm
+  const headingRegex = /^(\#+) (.+?) (?:\|\|(.+?)\|\|)?$/gm
 
   let match
   const allHeadings: KBHeadings[] = []
