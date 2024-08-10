@@ -1,7 +1,7 @@
 import {MetadataRoute} from 'next'
 import fs from 'fs'
 import path from 'path'
-import glob from 'glob'
+import {sync as globSync} from 'glob'
 import KBIndexJSON from '@/KBIndex.json'
 import {KBIndex} from '@/types'
 import {basePath} from '@/config'
@@ -15,7 +15,7 @@ const sitemap = (): MetadataRoute.Sitemap => {
   const findPages = (startPath: string): SiteMapObject[] => {
     const pattern = '**/page.tsx'
 
-    let files = glob.sync(pattern, {
+    let files = globSync(pattern, {
       cwd: startPath,
       ignore: ['**/imprint/page.tsx']
     })

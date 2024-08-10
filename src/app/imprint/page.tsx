@@ -17,7 +17,7 @@ const Imprint = async () => {
   const imprint = await getMDXByPath('app/imprint/imprint.mdx')
   return (
     <main className="prose">
-      <MDXRemote source={imprint} options={{mdxOptions}} />
+      <MDXRemote source={imprint} />
     </main>
   )
 }

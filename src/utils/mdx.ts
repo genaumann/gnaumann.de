@@ -7,7 +7,7 @@ import remarkgfm from 'remark-gfm'
 import {remarkCodeblock} from '@/remark/codeblock'
 import rehhypeHighlightCode from '@/rehype/highlightCode'
 import emoji from 'remark-emoji'
-import headingId from 'remark-custom-heading-id'
+import headingId from 'remark-custom-header-id'
 
 const rootDirectory = path.join(process.cwd(), 'src')
 
@@ -28,12 +28,12 @@ export const getPostBySlug = async ({kb}: getPostBySlugProps) => {
 
     const {frontmatter} = await compileMDX({
       source: fileContent,
-      options: {parseFrontmatter: true, mdxOptions}
+      options: {parseFrontmatter: true, ...mdxOptions}
     })
 
     return {meta: {...frontmatter}, fileContent}
   } catch (e) {
-    console.log(`${kb.join('/')} not found`)
+    console.log(e)
     return {}
   }
 }
