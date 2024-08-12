@@ -31,7 +31,8 @@ const useTableOfContents = (tableOfContents: KBHeadings[]): string | null => {
         const style = window.getComputedStyle(el)
         const scrollMt = parseFloat(style.scrollMarginTop)
 
-        const top = window.scrollY + el.getBoundingClientRect().top - scrollMt
+        const top =
+          window.scrollY + el.getBoundingClientRect().top - scrollMt - 50
         return {id: heading.id, top}
       })
       .filter((item): item is HeadingWithTop => item !== null)
