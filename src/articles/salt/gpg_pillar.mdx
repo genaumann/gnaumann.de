@@ -142,7 +142,7 @@ data1: this is not encrypted
 Nachdem die Pillar-Datei erstellt wurde, muss diese in der `top.sls` Datei dem Zielsystem zugewiesen werden.
 
 ```bash
-salt '*' saltutils.pillar_refresh
+salt '*' saltutil.refresh_pillar
 salt '*' pillar.get data2
 ```
 
