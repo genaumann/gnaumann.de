@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.5.2](https://github.com/genaumann/gnaumann.de/compare/v1.5.1...v1.5.2) (2024-08-14)
+
+### 🐛 Bugfix 🐛
+
+* **toc:** add margin to highlight active heading ([a8a7704](https://github.com/genaumann/gnaumann.de/commit/a8a7704f8fdeba99326c17ddaf8720bd18278031))
+
+### 💿 Continuous Integration 💿
+
+* **github:** fetch depth 0 on build ([1fb6e98](https://github.com/genaumann/gnaumann.de/commit/1fb6e98019915e63dcc231c06821599eb74bdf2d))
+* **semrel:** pin version to 24 ([e468b0c](https://github.com/genaumann/gnaumann.de/commit/e468b0cf08d186440741472f695e3c1ed91e7f6b))
+
+### 🏗️ Build 🏗️
+
+* fix error after updating deps ([e37daf5](https://github.com/genaumann/gnaumann.de/commit/e37daf535f1affae4b8b6a9f43e115bdae248d6d))
+* fix heading regex ([a5e14ad](https://github.com/genaumann/gnaumann.de/commit/a5e14adb684643d1325a89f41a2eb3db36f834d6))
+
 ## [1.5.1](https://github.com/genaumann/gnaumann.de/compare/v1.5.0...v1.5.1) (2024-04-21)
 
 
