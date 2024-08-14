@@ -28,6 +28,7 @@ jobs:
       - name: Run semantic-release
         uses: cycjimmy/semantic-release-action@v4
         with:
+          semantic_version: 24
           extra_plugins: |
             @semantic-release/commit-analyzer
             @semantic-release/release-notes-generator
