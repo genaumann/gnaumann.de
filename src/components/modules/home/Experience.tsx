@@ -6,12 +6,22 @@ import Badge from '@/components/Badge'
 
 const positions = [
   {
+    id: 8,
+    job: 'DevOps Engineer',
+    type: 'Vollzeit',
+    company: 'leasyro GmbH',
+    department: 'DevOps',
+    from: '2024-10-01',
+    icons: ['typescript', 'react', 'github']
+  },
+  {
     id: 7,
     job: 'DevOps Engineer',
     type: 'Teilzeit',
     company: 'leasyro GmbH',
     department: 'DevOps',
     from: '2023-04-01',
+    to: '2024-09-30',
     icons: ['typescript', 'react', 'github']
   },
   {
@@ -21,6 +31,7 @@ const positions = [
     company: 'SVA Systemvertrieb Alexander GmbH',
     department: 'Infrastructure Automation',
     from: '2023-04-01',
+    to: '2024-09-30',
     icons: ['ansible', 'terraform', 'gitlab']
   },
   {
@@ -99,7 +110,7 @@ export default function Experience() {
               className={clsx(
                 'bg-gray-200 rounded-2xl pt-10 pb-5 px-8 sm:py-10 col-span-2',
                 {
-                  'md:col-span-1 ring-2 ring-primary mx-1': !position.to
+                  'ring-2 ring-primary mx-1': !position.to
                 }
               )}
               key={position.id}>
